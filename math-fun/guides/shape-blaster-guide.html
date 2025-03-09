@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Blaster Guide - MathBlasters</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .guide-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .guide-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-container h3 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-container p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            color: var(--light);
+        }
+        
+        .guide-container ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-container li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+            color: var(--light);
+        }
+        
+        .guide-container li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        .example-container {
+            background-color: rgba(30, 58, 138, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .example-title {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .shapes-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .shape {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+        }
+        
+        .shape svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .shape-triangle {
+            color: #FF5722;
+        }
+        
+        .shape-square {
+            color: #2196F3;
+        }
+        
+        .shape-circle {
+            color: #4CAF50;
+        }
+        
+        .shape-hexagon {
+            color: #9C27B0;
+        }
+        
+        .tip-box {
+            background-color: rgba(245, 158, 11, 0.2);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tip-box h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--accent-color);
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .back-button:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .property-tag {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MathBlasters</h1>
+                <p class="tagline">Epic Math Adventures for Cool Boys!</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">HQ</a></li>
+                    <li><a href="../index.html#games">Missions</a></li>
+                    <li><a href="../index.html#about">Intel</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: 40px 0;">
+        <div class="container">
+            <h2>Shape Blaster Guide</h2>
+            <p>Master the Shape Blaster mission and become a geometry commando!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="guide-container">
+            <h2>Mission Briefing: Shape Blaster</h2>
+            
+            <p>Welcome to Shape Blaster, an action-packed mission where you'll identify and blast shapes based on their properties! This guide will prepare you for your mission and help you become a geometry commando.</p>
+            
+            <h3>Mission Objective</h3>
+            <p>In this mission, you need to quickly identify shapes based on their properties (like number of sides, angles, or symmetry) and blast them before they reach your base. The faster you identify and blast the correct shapes, the higher your score!</p>
+            
+            <div class="example-container">
+                <div class="example-title">Target Shapes:</div>
+                <p>You'll encounter various shapes with different properties. Your mission is to blast only the shapes that match the target property shown at the top of the screen.</p>
+                <div class="shapes-container">
+                    <div class="shape shape-triangle">
+                        <svg viewBox="0 0 100 100">
+                            <polygon points="50,10 90,90 10,90" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="shape shape-square">
+                        <svg viewBox="0 0 100 100">
+                            <rect x="10" y="10" width="80" height="80" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="shape shape-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="shape shape-hexagon">
+                        <svg viewBox="0 0 100 100">
+                            <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="currentColor"/>
+                        </svg>
+                    </div>
+                </div>
+                <p>Example target properties: <span class="property-tag">3 sides</span> <span class="property-tag">4 equal sides</span> <span class="property-tag">No corners</span> <span class="property-tag">Line symmetry</span></p>
+            </div>
+            
+            <h3>Mission Protocol:</h3>
+            <ul>
+                <li>When you start the mission, you'll see a target property displayed at the top of the screen.</li>
+                <li>Shapes will start appearing from the top of the screen and move downward toward your base.</li>
+                <li>Click on (blast) the shapes that match the target property.</li>
+                <li>If you blast a shape that doesn't match the property, you'll lose points.</li>
+                <li>If a shape that matches the property reaches your base without being blasted, you'll lose a life.</li>
+                <li>The mission gets progressively harder with shapes moving faster and more complex properties to identify.</li>
+                <li>Your objective is to score as many points as possible and advance through all levels!</li>
+            </ul>
+            
+            <div class="tip-box">
+                <h4>Tactical Tips:</h4>
+                <ul>
+                    <li>Learn to quickly identify the key properties of shapes - number of sides, equal sides, types of angles, symmetry.</li>
+                    <li>Prioritize shapes that are closest to your base.</li>
+                    <li>Don't waste ammo on shapes that don't match the target property.</li>
+                    <li>Watch for power-ups that can slow down shapes or give you special weapons.</li>
+                    <li>In higher levels, the target property might change mid-mission, so stay alert!</li>
+                </ul>
+            </div>
+            
+            <h3>Shape Properties to Master:</h3>
+            <ul>
+                <li><strong>Number of sides:</strong> Triangles (3), Squares (4), Pentagons (5), Hexagons (6), etc.</li>
+                <li><strong>Equal sides:</strong> Equilateral triangles, Squares, Regular pentagons, etc.</li>
+                <li><strong>Angles:</strong> Right angles (90°), Acute angles (less than 90°), Obtuse angles (more than 90°)</li>
+                <li><strong>Symmetry:</strong> Line symmetry (can be folded in half), Rotational symmetry (looks the same when rotated)</li>
+                <li><strong>Special properties:</strong> Parallel sides, Perpendicular sides, Diagonals</li>
+            </ul>
+            
+            <h3>Mission Controls:</h3>
+            <ul>
+                <li><strong>Click/tap on a shape</strong> to blast it</li>
+                <li><strong>Start Mission button</strong> begins a new mission</li>
+                <li><strong>Pause button</strong> temporarily halts the mission if you need a breather</li>
+                <li><strong>Power-up buttons</strong> activate special abilities when available</li>
+            </ul>
+            
+            <p>When you complete all levels, you'll earn the title of Geometry Commando! Your high score will be recorded in the MathBlasters Hall of Fame.</p>
+            
+            <p>Are you ready to take on this challenge and become a Shape Blaster master? Click the button below to begin your mission!</p>
+            
+            <a href="../games/shape-sort.html" class="back-button">Accept Mission</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MathBlasters HQ. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Secret Files</a>
+                <a href="#">Mission Rules</a>
+                <a href="#">Contact HQ</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

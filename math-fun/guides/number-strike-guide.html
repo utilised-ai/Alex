@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Strike Guide - MathBlasters</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .guide-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .guide-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-container h3 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-container p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            color: var(--light);
+        }
+        
+        .guide-container ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-container li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+            color: var(--light);
+        }
+        
+        .guide-container li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        .example-container {
+            background-color: rgba(30, 58, 138, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .example-title {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .example-cards {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+        
+        .example-card {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .example-card.match {
+            background-color: var(--secondary-color);
+        }
+        
+        .tip-box {
+            background-color: rgba(245, 158, 11, 0.2);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tip-box h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--accent-color);
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .back-button:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MathBlasters</h1>
+                <p class="tagline">Epic Math Adventures for Cool Boys!</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">HQ</a></li>
+                    <li><a href="../index.html#games">Missions</a></li>
+                    <li><a href="../index.html#about">Intel</a></li>
+                    <li><a href="../../index.html">Switch Version</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: 40px 0;">
+        <div class="container">
+            <h2>Number Strike Guide</h2>
+            <p>Learn how to complete the Number Strike mission and defeat the math monsters!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="guide-container">
+            <h2>Mission Briefing: Number Strike</h2>
+            
+            <p>Welcome to Number Strike, an action-packed mission where you'll match numbers with their equivalent expressions to defeat the math monsters! This guide will prepare you for your mission and help you succeed.</p>
+            
+            <h3>Mission Objective</h3>
+            <p>Number Strike is a memory matching game where you need to find pairs of cards that represent the same number. One card shows the number itself, while the matching card shows a math expression that equals that number.</p>
+            
+            <div class="example-container">
+                <div class="example-title">Target Example:</div>
+                <p>The card showing "8" matches with the card showing "4+4" because 4+4 equals 8.</p>
+                <div class="example-cards">
+                    <div class="example-card">8</div>
+                    <div class="example-card match">4+4</div>
+                </div>
+            </div>
+            
+            <h3>Mission Protocol:</h3>
+            <ul>
+                <li>When you start the mission, you'll see a grid of cards face down.</li>
+                <li>Click on any card to flip it over and reveal what's on the other side.</li>
+                <li>Then click on another card to see if it matches the first one.</li>
+                <li>If the two cards match (represent the same number), they will stay face up.</li>
+                <li>If they don't match, they will flip back face down, and you'll need to try again.</li>
+                <li>Your objective is to find all the matching pairs with the fewest moves and in the shortest time.</li>
+            </ul>
+            
+            <div class="tip-box">
+                <h4>Tactical Tips:</h4>
+                <ul>
+                    <li>Memorize the location of each card after it's flipped back over.</li>
+                    <li>Look for patterns in the expressions. For example, cards with addition (like 3+3) or multiplication (like 2×2).</li>
+                    <li>Start by finding the matches for the simplest numbers first.</li>
+                    <li>Develop a strategy - work systematically through the grid rather than clicking randomly.</li>
+                </ul>
+            </div>
+            
+            <h3>Skills You'll Master:</h3>
+            <ul>
+                <li>Addition (recognizing that 3+3 equals 6)</li>
+                <li>Multiplication (recognizing that 2×2 equals 4)</li>
+                <li>Number equivalence (understanding different ways to represent the same number)</li>
+                <li>Strategic thinking and memory skills</li>
+            </ul>
+            
+            <h3>Mission Controls:</h3>
+            <ul>
+                <li><strong>Click on a card</strong> to flip it over</li>
+                <li><strong>Start Mission button</strong> begins a new mission with freshly shuffled cards</li>
+                <li><strong>Abort Mission button</strong> lets you restart if you want to try again</li>
+            </ul>
+            
+            <p>When you find all the matching pairs, you'll complete the mission! The system will show you how many moves you made and how much time it took you to defeat the math monsters.</p>
+            
+            <p>Are you ready to take on this challenge and become a Number Strike champion? Click the button below to begin your mission!</p>
+            
+            <a href="../games/number-match.html" class="back-button">Accept Mission</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MathBlasters HQ. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../index.html#guides">Field Guides</a>
+                <a href="#">Mission Rules</a>
+                <a href="#">Contact HQ</a>
+                <a href="../../index.html">Switch Version</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

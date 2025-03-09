@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="none"/>
+  <circle cx="25" cy="70" r="15" fill="#073B4C"/>
+  <circle cx="75" cy="70" r="15" fill="#073B4C"/>
+  <rect x="15" y="30" width="70" height="30" rx="10" fill="#EF476F"/>
+  <text x="50" y="50" font-family="Arial" font-size="16" fill="white" text-anchor="middle">3 × 4 = ?</text>
+  <polygon points="85,45 95,50 85,55" fill="#073B4C"/>
+</svg> 

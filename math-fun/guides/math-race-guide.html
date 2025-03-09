@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Race Guide - MathBlasters</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .guide-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .guide-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-container h3 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-container p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            color: var(--light);
+        }
+        
+        .guide-container ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-container li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+            color: var(--light);
+        }
+        
+        .guide-container li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        .example-container {
+            background-color: rgba(30, 58, 138, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .example-title {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .race-track {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .race-car {
+            width: 60px;
+            height: 30px;
+            background-color: var(--accent-color);
+            border-radius: 5px;
+            position: relative;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .race-car::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #333;
+            border-radius: 50%;
+            bottom: -2px;
+            left: 10px;
+        }
+        
+        .race-car::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #333;
+            border-radius: 50%;
+            bottom: -2px;
+            right: 10px;
+        }
+        
+        .finish-line {
+            width: 10px;
+            height: 100%;
+            background-image: repeating-linear-gradient(45deg, #000, #000 10px, #fff 10px, #fff 20px);
+            position: absolute;
+            right: 20px;
+            top: 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .math-problem {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: 600;
+        }
+        
+        .tip-box {
+            background-color: rgba(245, 158, 11, 0.2);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tip-box h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--accent-color);
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .back-button:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MathBlasters</h1>
+                <p class="tagline">Epic Math Adventures for Cool Boys!</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">HQ</a></li>
+                    <li><a href="../index.html#games">Missions</a></li>
+                    <li><a href="../index.html#about">Intel</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: 40px 0;">
+        <div class="container">
+            <h2>Math Race Guide</h2>
+            <p>Master the Math Race challenge and become the ultimate speed racer!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="guide-container">
+            <h2>Mission Briefing: Math Race</h2>
+            
+            <p>Welcome to Math Race, an adrenaline-pumping mission where you'll solve multiplication problems to power your race car to victory! This guide will prepare you for your mission and help you become the ultimate math racing champion.</p>
+            
+            <h3>Mission Objective</h3>
+            <p>In this high-speed mission, you need to solve multiplication problems as quickly as possible to make your race car zoom past the competition. The faster you solve the problems, the faster your car will go!</p>
+            
+            <div class="example-container">
+                <div class="example-title">Race Track:</div>
+                <p>Your race car will move across the track based on how quickly you solve the multiplication problems.</p>
+                <div class="race-track">
+                    <div class="race-car">YOU</div>
+                    <div class="finish-line"></div>
+                </div>
+                <p>Example problems: <span class="math-problem">3 × 4 = ?</span> <span class="math-problem">7 × 6 = ?</span> <span class="math-problem">9 × 8 = ?</span></p>
+            </div>
+            
+            <h3>Mission Protocol:</h3>
+            <ul>
+                <li>When you start the mission, you'll see your race car at the starting line.</li>
+                <li>A multiplication problem will appear on the screen.</li>
+                <li>Type in the correct answer as quickly as possible.</li>
+                <li>If your answer is correct, your car will zoom forward.</li>
+                <li>If your answer is incorrect, your car will slow down.</li>
+                <li>You'll be racing against computer opponents or your previous best time.</li>
+                <li>The first car to reach the finish line wins the race!</li>
+                <li>As you advance through levels, the multiplication problems will get more challenging.</li>
+            </ul>
+            
+            <div class="tip-box">
+                <h4>Racing Tactics:</h4>
+                <ul>
+                    <li>Memorize your multiplication tables to answer questions faster.</li>
+                    <li>For larger numbers, use quick mental math strategies like breaking down the problem.</li>
+                    <li>For example, to solve 7 × 8, you can think of it as 7 × 4 × 2 = 28 × 2 = 56.</li>
+                    <li>Focus on accuracy first, then work on speed. Wrong answers will slow you down more than taking an extra second to think.</li>
+                    <li>Watch for power-ups on the track that can give you a speed boost or slow down opponents.</li>
+                </ul>
+            </div>
+            
+            <h3>Multiplication Skills to Master:</h3>
+            <ul>
+                <li><strong>Basic multiplication:</strong> Tables from 1 to 10</li>
+                <li><strong>Double-digit multiplication:</strong> Like 12 × 5 or 15 × 3</li>
+                <li><strong>Speed strategies:</strong> Breaking down problems into easier parts</li>
+                <li><strong>Pattern recognition:</strong> Spotting patterns in multiplication (like multiplying by 9)</li>
+            </ul>
+            
+            <h3>Race Car Controls:</h3>
+            <ul>
+                <li><strong>Type the answer</strong> to the multiplication problem</li>
+                <li><strong>Press Enter</strong> to submit your answer</li>
+                <li><strong>Start Race button</strong> begins a new race</li>
+                <li><strong>Turbo Boost button</strong> activates your special power (available once per race)</li>
+                <li><strong>Pause button</strong> temporarily halts the race if you need a breather</li>
+            </ul>
+            
+            <p>When you win races, you'll earn upgrade points to customize your race car with cool features like nitro boosters, aerodynamic wings, and special paint jobs! You'll also unlock more challenging tracks and tougher opponents.</p>
+            
+            <p>Are you ready to put the pedal to the metal and become the ultimate Math Race champion? Click the button below to begin your mission!</p>
+            
+            <a href="../games/math-race.html" class="back-button">Start Your Engines</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MathBlasters HQ. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Secret Files</a>
+                <a href="#">Mission Rules</a>
+                <a href="#">Contact HQ</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

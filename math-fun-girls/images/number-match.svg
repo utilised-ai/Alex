@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="none"/>
+  
+  <!-- Background decorations -->
+  <circle cx="15" cy="15" r="5" fill="#FFD166" opacity="0.6"/>
+  <circle cx="85" cy="15" r="3" fill="#5BCEFA" opacity="0.6"/>
+  <circle cx="15" cy="85" r="4" fill="#9D65C9" opacity="0.6"/>
+  <circle cx="85" cy="85" r="6" fill="#FF6B9D" opacity="0.6"/>
+  
+  <!-- First number circle -->
+  <circle cx="30" cy="30" r="20" fill="#FF6B9D"/>
+  <text x="30" y="36" font-family="Quicksand, sans-serif" font-size="20" fill="white" text-anchor="middle" font-weight="bold">2</text>
+  
+  <!-- Second number circle -->
+  <circle cx="70" cy="70" r="20" fill="#9D65C9"/>
+  <text x="70" y="76" font-family="Quicksand, sans-serif" font-size="20" fill="white" text-anchor="middle" font-weight="bold">4</text>
+  
+  <!-- Connecting line with hearts -->
+  <line x1="35" y1="35" x2="65" y2="65" stroke="#5BCEFA" stroke-width="3" stroke-linecap="round" stroke-dasharray="1, 8"/>
+  
+  <!-- Heart decorations -->
+  <path d="M50,50 c0,-5 -4,-9 -8,-9 s-8,4 -8,9 s8,10 8,10 s8,-5 8,-10" fill="#FF6B9D"/>
+  
+  <!-- Stars -->
+  <path d="M20,60 l2,6 l6,0 l-5,4 l2,6 l-5,-4 l-5,4 l2,-6 l-5,-4 l6,0 z" fill="#FFD166"/>
+  <path d="M80,40 l1.5,4.5 l4.5,0 l-3.75,3 l1.5,4.5 l-3.75,-3 l-3.75,3 l1.5,-4.5 l-3.75,-3 l4.5,0 z" fill="#FFD166"/>
+</svg> 

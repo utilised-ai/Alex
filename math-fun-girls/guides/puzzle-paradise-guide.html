@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Paradise Guide - MathStars</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .guide-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--secondary-color);
+            position: relative;
+        }
+        
+        .guide-container h2 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .guide-container h3 {
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .guide-container p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .guide-container ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .guide-container li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .guide-container li::before {
+            content: '🌸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        
+        .example-container {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .example-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .puzzle-example {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(3, 60px);
+            gap: 10px;
+            margin: 20px auto;
+            justify-content: center;
+        }
+        
+        .puzzle-cell {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .puzzle-cell.filled {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .puzzle-cell.empty {
+            background-color: var(--light);
+            border: 2px dashed var(--secondary-color);
+        }
+        
+        .tip-box {
+            background-color: rgba(91, 206, 250, 0.2);
+            border: 2px dashed var(--accent-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .tip-box h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .magic-sum {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MathStars</h1>
+                <p class="tagline">Magical Math Adventures for Girls!</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#adventures">Adventures</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: 40px 0;">
+        <div class="container">
+            <h2>Puzzle Paradise Guide</h2>
+            <p>Learn how to play the Puzzle Paradise adventure and make your magical number garden bloom!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="guide-container">
+            <h2>How to Play Puzzle Paradise</h2>
+            
+            <p>Welcome to Puzzle Paradise, a magical garden where numbers bloom and grow! This guide will help you understand how to play the game and make your garden flourish with beautiful math.</p>
+            
+            <h3>What is Puzzle Paradise?</h3>
+            <p>Puzzle Paradise is a number puzzle game where you need to fill in missing numbers to make each row and column add up to a special magic sum. By completing the puzzles, you'll help your magical number garden bloom!</p>
+            
+            <div class="example-container">
+                <div class="example-title">Example:</div>
+                <p>In this 3×3 garden, each row and column must add up to 15. Some numbers are already planted for you, and you need to figure out what numbers to plant in the empty spaces.</p>
+                <div class="puzzle-example">
+                    <div class="puzzle-cell filled">8</div>
+                    <div class="puzzle-cell empty"></div>
+                    <div class="puzzle-cell filled">6</div>
+                    <div class="puzzle-cell empty"></div>
+                    <div class="puzzle-cell filled">5</div>
+                    <div class="puzzle-cell empty"></div>
+                    <div class="puzzle-cell filled">4</div>
+                    <div class="puzzle-cell empty"></div>
+                    <div class="puzzle-cell filled">2</div>
+                </div>
+                <div class="magic-sum">Magic Sum: 15</div>
+            </div>
+            
+            <h3>How to Play:</h3>
+            <ul>
+                <li>When you start the game, you'll see a grid with some numbers already filled in.</li>
+                <li>Click on any empty cell to select it.</li>
+                <li>Then click on a number from the number pad to place that number in the selected cell.</li>
+                <li>Your goal is to fill in all the empty cells so that each row and column adds up to the magic sum (usually 15).</li>
+                <li>Once you've filled in all the cells, click the "Check Garden" button to see if your solution is correct.</li>
+                <li>If all rows and columns add up to the magic sum, your garden will bloom with magical sparkles!</li>
+            </ul>
+            
+            <div class="tip-box">
+                <h4>Garden Growing Tips:</h4>
+                <ul>
+                    <li>Look at the numbers that are already filled in and think about what numbers you need to add to reach the magic sum.</li>
+                    <li>If a row already has two numbers, you can figure out the third by subtracting those two numbers from the magic sum.</li>
+                    <li>For example, if a row has 8 and 1, and the magic sum is 15, then 15 - 8 - 1 = 6, so you need to place a 6 in the empty cell.</li>
+                    <li>Remember that each number can only appear once in the garden!</li>
+                    <li>If you make a mistake, you can click on a cell and then click the "C" button to clear it.</li>
+                </ul>
+            </div>
+            
+            <h3>Math Skills You'll Practice:</h3>
+            <ul>
+                <li>Addition (adding numbers in rows and columns)</li>
+                <li>Subtraction (figuring out what number is needed to reach the sum)</li>
+                <li>Problem-solving (finding the right combination of numbers)</li>
+                <li>Logical thinking (using clues to determine where numbers should go)</li>
+            </ul>
+            
+            <h3>Controls:</h3>
+            <ul>
+                <li><strong>Click on an empty cell</strong> to select it</li>
+                <li><strong>Click on a number</strong> in the number pad to place it in the selected cell</li>
+                <li><strong>Click the "C" button</strong> to clear a selected cell</li>
+                <li><strong>Check Garden button</strong> verifies if your solution is correct</li>
+                <li><strong>Next Level button</strong> takes you to a more challenging garden</li>
+                <li><strong>Start Over button</strong> lets you begin again from the first level</li>
+            </ul>
+            
+            <p>As you complete each level, your garden will grow more beautiful and the puzzles will become more challenging. You'll earn magic points for each level you complete!</p>
+            
+            <p>Ready to make your magical number garden bloom? Click the button below to start your adventure!</p>
+            
+            <a href="../games/math-puzzle.html" class="back-button">Play Puzzle Paradise</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MathStars. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Magic Handbook</a>
+                <a href="#">Adventure Rules</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

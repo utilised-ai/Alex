@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="none"/>
+  
+  <!-- Background decorations -->
+  <circle cx="15" cy="15" r="4" fill="#FF6B9D" opacity="0.6"/>
+  <circle cx="85" cy="15" r="5" fill="#9D65C9" opacity="0.6"/>
+  <circle cx="15" cy="85" r="3" fill="#5BCEFA" opacity="0.6"/>
+  <circle cx="85" cy="85" r="4" fill="#FFD166" opacity="0.6"/>
+  
+  <!-- Rainbow path -->
+  <path d="M10,70 Q50,40 90,70" stroke="#FF6B9D" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M10,75 Q50,45 90,75" stroke="#FFD166" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M10,80 Q50,50 90,80" stroke="#5BCEFA" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M10,85 Q50,55 90,85" stroke="#9D65C9" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Unicorn/racer -->
+  <circle cx="30" cy="60" r="10" fill="white"/>
+  <circle cx="25" cy="58" r="2" fill="#FF6B9D"/>
+  <path d="M32,62 Q34,64 36,62" stroke="#FF6B9D" stroke-width="1" fill="none"/>
+  <path d="M30,50 L35,40 L40,45 Z" fill="#FFD166"/>
+  
+  <!-- Math problem in a cloud -->
+  <path d="M50,30 Q45,25 50,20 Q55,15 60,20 Q65,15 70,20 Q75,25 70,30 Q75,35 70,40 Q65,45 60,40 Q55,45 50,40 Q45,35 50,30" fill="white"/>
+  <text x="60" y="32" font-family="Quicksand, sans-serif" font-size="10" fill="#9D65C9" text-anchor="middle" font-weight="bold">3 × 4 = ?</text>
+  
+  <!-- Stars -->
+  <path d="M75,50 l1.5,4.5 l4.5,0 l-3.75,3 l1.5,4.5 l-3.75,-3 l-3.75,3 l1.5,-4.5 l-3.75,-3 l4.5,0 z" fill="#FFD166"/>
+  <path d="M85,40 l1,3 l3,0 l-2.5,2 l1,3 l-2.5,-2 l-2.5,2 l1,-3 l-2.5,-2 l3,0 z" fill="#FFD166"/>
+  <path d="M15,40 l1,3 l3,0 l-2.5,2 l1,3 l-2.5,-2 l-2.5,2 l1,-3 l-2.5,-2 l3,0 z" fill="#FFD166"/>
+</svg> 

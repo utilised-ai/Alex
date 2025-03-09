@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Sorceress Guide - MathStars</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .guide-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--accent-color);
+            position: relative;
+        }
+        
+        .guide-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .guide-container h3 {
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .guide-container p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .guide-container ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .guide-container li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .guide-container li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        .example-container {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .example-title {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .shapes-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .shape {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+        }
+        
+        .shape svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .shape-triangle {
+            color: #FF6B9D;
+        }
+        
+        .shape-square {
+            color: #5BCEFA;
+        }
+        
+        .shape-circle {
+            color: #9D65C9;
+        }
+        
+        .shape-hexagon {
+            color: #FFD166;
+        }
+        
+        .tip-box {
+            background-color: rgba(91, 206, 250, 0.2);
+            border: 2px dashed var(--primary-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .tip-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .property-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .magic-wand {
+            display: inline-block;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MathStars</h1>
+                <p class="tagline">Magical Math Adventures for Girls!</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#adventures">Adventures</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: 40px 0;">
+        <div class="container">
+            <h2>Shape Sorceress Guide</h2>
+            <p>Learn how to use your magical powers to sort shapes and create beautiful patterns!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="guide-container">
+            <h2>How to Play Shape Sorceress</h2>
+            
+            <p>Welcome to the enchanted world of Shape Sorceress, where you'll use your magical powers to identify and sort shapes based on their special properties! This guide will help you understand how to play the game and become a true Shape Sorceress.</p>
+            
+            <h3>What is Shape Sorceress?</h3>
+            <p>Shape Sorceress is a magical adventure where you'll discover the enchanting properties of different shapes. Your task is to identify shapes based on their special qualities (like number of sides, symmetry, or angles) and sort them into the correct magical containers.</p>
+            
+            <div class="example-container">
+                <div class="example-title">Magical Shapes:</div>
+                <p>You'll encounter various enchanted shapes with different properties. Your task is to sort them based on the magical property shown at the top of your spell book.</p>
+                <div class="shapes-container">
+                    <div class="shape shape-triangle">
+                        <svg viewBox="0 0 100 100">
+                            <polygon points="50,10 90,90 10,90" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="shape shape-square">
+                        <svg viewBox="0 0 100 100">
+                            <rect x="10" y="10" width="80" height="80" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="shape shape-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="shape shape-hexagon">
+                        <svg viewBox="0 0 100 100">
+                            <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="currentColor"/>
+                        </svg>
+                    </div>
+                </div>
+                <p>Example magical properties: <span class="property-tag">3 sides</span> <span class="property-tag">4 equal sides</span> <span class="property-tag">Perfect roundness</span> <span class="property-tag">Mirror magic</span></p>
+            </div>
+            
+            <h3>How to Play:</h3>
+            <ul>
+                <li>When you start the adventure, you'll see a magical property displayed at the top of your spell book.</li>
+                <li>Enchanted shapes will appear on your magical canvas.</li>
+                <li>Use your wand (mouse or finger) to drag the shapes that match the magical property into the glowing cauldron.</li>
+                <li>If you place a shape in the wrong cauldron, it will gently float back to the canvas.</li>
+                <li>If you correctly sort all the shapes with the target property, your spell will be complete and sparkles will fill the screen!</li>
+                <li>The adventure becomes more magical with each level, introducing new shape properties and more complex sorting challenges.</li>
+            </ul>
+            
+            <div class="tip-box">
+                <h4>Magical Tips:</h4>
+                <ul>
+                    <li>Take your time to observe each shape's special qualities before sorting.</li>
+                    <li>Learn to recognize the magical properties of shapes - like the number of sides, whether all sides are equal, and types of symmetry.</li>
+                    <li>Look for special sparkles around shapes that might give you clues about their properties.</li>
+                    <li>Collect magical gems as you progress through the levels to unlock special powers!</li>
+                    <li>If you're not sure about a shape, you can use your "Reveal Magic" power (once per level) to highlight all shapes with the target property.</li>
+                </ul>
+            </div>
+            
+            <h3>Magical Shape Properties:</h3>
+            <ul>
+                <li><strong><span class="magic-wand">🪄</span> Number of sides:</strong> Triangles (3), Squares (4), Pentagons (5), Hexagons (6), and more!</li>
+                <li><strong><span class="magic-wand">🪄</span> Equal sides:</strong> Shapes where all sides are the same length, like equilateral triangles and squares.</li>
+                <li><strong><span class="magic-wand">🪄</span> Angles:</strong> Right angles (square corners), acute angles (pointy corners), and obtuse angles (wide corners).</li>
+                <li><strong><span class="magic-wand">🪄</span> Mirror magic:</strong> Shapes that can be folded in half to create perfect mirror images (line symmetry).</li>
+                <li><strong><span class="magic-wand">🪄</span> Spinning magic:</strong> Shapes that look the same when rotated (rotational symmetry).</li>
+            </ul>
+            
+            <h3>Magical Controls:</h3>
+            <ul>
+                <li><strong>Drag and drop</strong> shapes to sort them</li>
+                <li><strong>Sparkle button</strong> begins a new magical adventure</li>
+                <li><strong>Pause button</strong> freezes time if you need a moment to think</li>
+                <li><strong>Magic Potion button</strong> activates special powers when available</li>
+            </ul>
+            
+            <p>As you complete each level, your magical abilities will grow stronger, and you'll unlock new enchanted shapes and properties to discover. You'll earn magical stars for each spell you complete successfully!</p>
+            
+            <p>Are you ready to become a Shape Sorceress and master the magical properties of shapes? Click the button below to begin your enchanted adventure!</p>
+            
+            <a href="../games/shape-sort.html" class="back-button">Begin Magical Adventure</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MathStars. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Magic Handbook</a>
+                <a href="#">Adventure Rules</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

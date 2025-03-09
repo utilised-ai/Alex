@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Racer Guide - MathStars</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .guide-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--bright-accent);
+            position: relative;
+        }
+        
+        .guide-container h2 {
+            color: var(--bright-accent);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .guide-container h3 {
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .guide-container p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .guide-container ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .guide-container li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .guide-container li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            color: var(--bright-accent);
+        }
+        
+        .example-container {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--bright-accent);
+        }
+        
+        .example-title {
+            font-weight: 600;
+            color: var(--bright-accent);
+            margin-bottom: 10px;
+        }
+        
+        .rainbow-track {
+            background: linear-gradient(to right, #FF6B9D, #FFD166, #5BCEFA, #9D65C9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .unicorn {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+        }
+        
+        .star {
+            position: absolute;
+            font-size: 20px;
+            top: 10px;
+            color: white;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
+        }
+        
+        .star:nth-child(1) { right: 20%; }
+        .star:nth-child(2) { right: 40%; }
+        .star:nth-child(3) { right: 60%; }
+        .star:nth-child(4) { right: 80%; }
+        
+        .math-problem {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tip-box {
+            background-color: rgba(255, 209, 102, 0.2);
+            border: 2px dashed var(--bright-accent);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .tip-box h4 {
+            color: var(--bright-accent);
+            margin-bottom: 10px;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--bright-accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MathStars</h1>
+                <p class="tagline">Magical Math Adventures for Girls!</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#adventures">Adventures</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: 40px 0;">
+        <div class="container">
+            <h2>Rainbow Racer Guide</h2>
+            <p>Learn how to race across the rainbow and collect sparkly stars!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="guide-container">
+            <h2>How to Play Rainbow Racer</h2>
+            
+            <p>Welcome to Rainbow Racer, a magical adventure where you'll race across a beautiful rainbow by solving multiplication problems! This guide will help you understand how to play the game and collect all the sparkly stars along the way.</p>
+            
+            <h3>What is Rainbow Racer?</h3>
+            <p>Rainbow Racer is an enchanting math adventure where you guide your magical unicorn across a rainbow path by solving multiplication problems. The faster you solve the problems, the quicker your unicorn will gallop, and the more sparkly stars you'll collect!</p>
+            
+            <div class="example-container">
+                <div class="example-title">Rainbow Path:</div>
+                <p>Your unicorn will move across the rainbow based on how quickly you solve the multiplication problems.</p>
+                <div class="rainbow-track">
+                    <div class="unicorn">🦄</div>
+                    <div class="star">⭐</div>
+                    <div class="star">⭐</div>
+                    <div class="star">⭐</div>
+                    <div class="star">⭐</div>
+                </div>
+                <p>Example problems: <span class="math-problem">3 × 4 = ?</span> <span class="math-problem">7 × 6 = ?</span> <span class="math-problem">9 × 8 = ?</span></p>
+            </div>
+            
+            <h3>How to Play:</h3>
+            <ul>
+                <li>When you start the adventure, you'll see your unicorn at the beginning of the rainbow path.</li>
+                <li>A multiplication problem will appear in your magical crystal ball.</li>
+                <li>Type in the correct answer as quickly as you can.</li>
+                <li>If your answer is correct, your unicorn will gallop forward and collect any stars it passes.</li>
+                <li>If your answer is incorrect, your unicorn will slow down a little.</li>
+                <li>You can race against your friends or try to beat your own best time.</li>
+                <li>The first unicorn to reach the end of the rainbow wins the race!</li>
+                <li>As you advance through levels, the rainbow paths will get longer and the multiplication problems will become more challenging.</li>
+            </ul>
+            
+            <div class="tip-box">
+                <h4>Magical Racing Tips:</h4>
+                <ul>
+                    <li>Practice your multiplication tables to answer questions faster.</li>
+                    <li>For larger numbers, try breaking down the problem into smaller parts.</li>
+                    <li>For example, to solve 7 × 8, you can think of it as 7 × 4 × 2 = 28 × 2 = 56.</li>
+                    <li>Accuracy is important! It's better to take an extra second to get the right answer than to rush and make a mistake.</li>
+                    <li>Look for magical rainbow boosts along the path that can give your unicorn extra speed!</li>
+                </ul>
+            </div>
+            
+            <h3>Multiplication Magic You'll Learn:</h3>
+            <ul>
+                <li><strong>Basic multiplication:</strong> Tables from 1 to 10</li>
+                <li><strong>Double-digit multiplication:</strong> Like 12 × 5 or 15 × 3</li>
+                <li><strong>Quick calculation tricks:</strong> Breaking down problems into easier parts</li>
+                <li><strong>Pattern recognition:</strong> Discovering patterns in multiplication (like multiplying by 9)</li>
+            </ul>
+            
+            <h3>Magical Controls:</h3>
+            <ul>
+                <li><strong>Type the answer</strong> to the multiplication problem</li>
+                <li><strong>Press Enter</strong> to submit your answer</li>
+                <li><strong>Start Adventure button</strong> begins a new race</li>
+                <li><strong>Rainbow Boost button</strong> activates your special power (available once per race)</li>
+                <li><strong>Pause button</strong> freezes time if you need a moment to think</li>
+            </ul>
+            
+            <p>As you win races, you'll earn magical gems to customize your unicorn with beautiful accessories like sparkling manes, colorful horns, and magical wings! You'll also unlock new rainbow paths with different themes like Cloud Kingdom, Crystal Caves, and Flower Fields.</p>
+            
+            <p>Are you ready to race across the rainbow and become a multiplication master? Click the button below to begin your magical adventure!</p>
+            
+            <a href="../games/math-race.html" class="back-button">Begin Rainbow Race</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MathStars. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Magic Handbook</a>
+                <a href="#">Adventure Rules</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

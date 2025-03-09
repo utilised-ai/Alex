@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathBlasters - Epic Math Games for Cool Boys</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .guides-section {
+            background-color: var(--dark);
+            padding: 60px 0;
+            position: relative;
+        }
+        
+        .guides-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .guide-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        .guide-img {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .guide-img img {
+            max-width: 80px;
+            max-height: 80px;
+        }
+        
+        .guide-card h3 {
+            color: var(--light);
+            padding: 0 20px;
+            margin: 20px 0 10px;
+            font-size: 1.4rem;
+        }
+        
+        .guide-card p {
+            color: var(--light-muted);
+            padding: 0 20px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .guide-card .btn-small {
+            margin: 0 20px 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MathBlasters</h1>
+                <p class="tagline">Epic Math Adventures for Cool Boys!</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">HQ</a></li>
+                    <li><a href="#games">Missions</a></li>
+                    <li><a href="#guides">Field Guides</a></li>
+                    <li><a href="#about">Intel</a></li>
+                    <li><a href="../index.html">Switch Version</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Epic Math Challenges</h2>
+            <p>Ready to prove your skills? Take on our collection of math missions and become the ultimate Math Blaster!</p>
+            <a href="#games" class="btn">Start Your Mission</a>
+        </div>
+    </section>
+
+    <section id="games" class="games-section">
+        <div class="container">
+            <h2>Your Missions</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-img" style="background-color: #1E3A8A;">
+                        <img src="images/number-match.svg" alt="Number Match">
+                    </div>
+                    <h3>Number Strike</h3>
+                    <p>Match numbers to their equivalent expressions and defeat the math monsters</p>
+                    <a href="games/number-match.html" class="btn-small">Accept Mission</a>
+                </div>
+                <div class="game-card">
+                    <div class="game-img" style="background-color: #10B981;">
+                        <img src="images/math-puzzle.svg" alt="Math Puzzle">
+                    </div>
+                    <h3>Puzzle Assault</h3>
+                    <p>Crack the code by solving puzzles with addition and subtraction</p>
+                    <a href="games/math-puzzle.html" class="btn-small">Accept Mission</a>
+                </div>
+                <div class="game-card">
+                    <div class="game-img" style="background-color: #1E3A8A;">
+                        <img src="images/shape-sort.svg" alt="Shape Sort">
+                    </div>
+                    <h3>Shape Blaster</h3>
+                    <p>Infiltrate enemy territory by sorting shapes by their properties</p>
+                    <a href="games/shape-sort.html" class="btn-small">Coming Soon</a>
+                </div>
+                <div class="game-card">
+                    <div class="game-img" style="background-color: #DC2626;">
+                        <img src="images/math-race.svg" alt="Math Race">
+                    </div>
+                    <h3>Math Race</h3>
+                    <p>Race against time to solve multiplication problems and win the championship</p>
+                    <a href="games/math-race.html" class="btn-small">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guides" class="guides-section">
+        <div class="container">
+            <h2>Field Guides</h2>
+            <p>Every elite agent needs proper training. Check out these field guides to master each mission!</p>
+            <div class="guides-grid">
+                <div class="guide-card">
+                    <div class="guide-img" style="background-color: #1E3A8A;">
+                        <img src="images/number-match.svg" alt="Number Strike Guide">
+                    </div>
+                    <h3>Number Strike Guide</h3>
+                    <p>Learn the tactics to match numbers and defeat math monsters</p>
+                    <a href="guides/number-strike-guide.html" class="btn-small">Read Guide</a>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-img" style="background-color: #10B981;">
+                        <img src="images/math-puzzle.svg" alt="Math Puzzle Guide">
+                    </div>
+                    <h3>Puzzle Assault Guide</h3>
+                    <p>Master the strategies to solve puzzles and crack the code</p>
+                    <a href="guides/math-puzzle-guide.html" class="btn-small">Read Guide</a>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-img" style="background-color: #1E3A8A;">
+                        <img src="images/shape-sort.svg" alt="Shape Blaster Guide">
+                    </div>
+                    <h3>Shape Blaster Guide</h3>
+                    <p>Learn to identify shapes and become a geometry commando</p>
+                    <a href="guides/shape-blaster-guide.html" class="btn-small">Read Guide</a>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-img" style="background-color: #DC2626;">
+                        <img src="images/math-race.svg" alt="Math Race Guide">
+                    </div>
+                    <h3>Math Race Guide</h3>
+                    <p>Discover speed tactics for multiplication and racing victory</p>
+                    <a href="guides/math-race-guide.html" class="btn-small">Read Guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>Mission Intel</h2>
+            <p>MathBlasters is an elite training program designed to transform ordinary boys into math champions. Our action-packed missions help you develop essential math skills while having an awesome time!</p>
+            <p>All missions are designed by top-secret math experts and game developers to ensure they're both challenging and epic. Do you have what it takes to become a Math Blaster?</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MathBlasters HQ. All rights reserved.</p>
+            <p>Created by Alex Jones from Australia</p>
+            <div class="footer-links">
+                <a href="#guides">Field Guides</a>
+                <a href="#">Mission Rules</a>
+                <a href="#">Contact HQ</a>
+                <a href="../index.html">Switch Version</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

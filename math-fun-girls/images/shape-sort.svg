@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="none"/>
+  
+  <!-- Background decorations -->
+  <circle cx="10" cy="10" r="3" fill="#9D65C9" opacity="0.6"/>
+  <circle cx="90" cy="10" r="4" fill="#FF6B9D" opacity="0.6"/>
+  <circle cx="10" cy="90" r="3" fill="#FFD166" opacity="0.6"/>
+  <circle cx="90" cy="90" r="5" fill="#5BCEFA" opacity="0.6"/>
+  
+  <!-- Shapes -->
+  <circle cx="30" cy="30" r="15" fill="#FF6B9D"/>
+  <rect x="55" y="15" width="30" height="30" rx="5" fill="#FFD166"/>
+  <polygon points="30,85 15,60 45,60" fill="#5BCEFA"/>
+  <path d="M70,60 Q85,60 85,75 Q85,90 70,90 Q55,90 55,75 Q55,60 70,60" fill="#9D65C9"/>
+  
+  <!-- Sparkles and decorations -->
+  <circle cx="30" cy="30" r="2" fill="white"/>
+  <circle cx="70" cy="30" r="2" fill="white"/>
+  <circle cx="30" cy="70" r="2" fill="white"/>
+  <circle cx="70" cy="75" r="2" fill="white"/>
+  
+  <!-- Magic wand -->
+  <line x1="50" y1="50" x2="60" y2="40" stroke="#FFD166" stroke-width="2"/>
+  <circle cx="62" cy="38" r="3" fill="#FFD166"/>
+  <path d="M63,37 l2,-2 l1,1 l-2,2 z" fill="white"/>
+  
+  <!-- Stars -->
+  <path d="M15,25 l1,3 l3,0 l-2.5,2 l1,3 l-2.5,-2 l-2.5,2 l1,-3 l-2.5,-2 l3,0 z" fill="#FFD166"/>
+  <path d="M85,75 l1,3 l3,0 l-2.5,2 l1,3 l-2.5,-2 l-2.5,2 l1,-3 l-2.5,-2 l3,0 z" fill="#FFD166"/>
+</svg> 
