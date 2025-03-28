@@ -3,75 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puzzle Assault - MathBlasters</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Title will be set dynamically -->
+    <title>Game</title>
+
+    <!-- Link Core CSS (Adjusted path) -->
+    <link rel="stylesheet" href="../css/core.css">
+
+    <!-- Placeholder for Theme CSS (Adjusted path) -->
+    <link id="theme-style" rel="stylesheet" href="">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Inline script for early theme loading -->
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const theme = params.get('theme') || 'blasters'; // Default to blasters if not specified
+        const validThemes = ['blasters', 'stars'];
+        const currentTheme = validThemes.includes(theme) ? theme : 'blasters';
+
+        // Set theme attribute on html element
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        // Set theme CSS (Adjusted path)
+        const themeStyleLink = document.getElementById('theme-style');
+        themeStyleLink.setAttribute('href', `../css/theme-${currentTheme}.css`);
+
+        // Store theme info
+        window.APP_THEME = currentTheme;
+        window.ASSET_PATH = `../assets/${currentTheme}/images/`; // Not used here, but consistent
+
+        // Set page title dynamically
+        const gameName = "Puzzle Assault / Puzzle Paradise"; // Placeholder
+        document.title = `${gameName} - ${currentTheme === 'stars' ? 'MathStars' : 'MathBlasters'}`;
+    </script>
+
+    <!-- TODO: Move these inline styles to core.css or theme CSS files -->
     <style>
-        .game-container {
+         body { /* Ensure body background/color uses theme */
+             background-color: var(--color-bg-dark);
+             color: var(--color-text-light);
+         }
+         .game-content-wrapper { /* Renamed from game-container */
             max-width: 800px;
             margin: 40px auto;
-            padding: 20px;
-            background-color: var(--card-bg);
+            padding: 30px;
+            background-color: var(--color-card-bg);
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            border: 2px solid var(--secondary-color);
+            box-shadow: var(--shadow-card);
+            border: 2px solid var(--color-secondary); /* Use secondary color */
             position: relative;
             overflow: hidden;
+            color: var(--color-text-dark); /* Text color inside card */
         }
-        
-        .game-container::before {
+        .game-content-wrapper[data-theme="blasters"] {
+             color: var(--color-text-light);
+        }
+         .game-content-wrapper[data-theme="stars"] {
+             color: var(--color-text-dark);
+             border-color: var(--color-primary); /* Pink border for stars */
+         }
+
+        .game-content-wrapper::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M81.28 88H68.413l19.298 19.298L81.28 88zm2.107 0h13.226L90 107.838 83.387 88zm15.334 0h12.866l-19.298 19.298L98.72 88zm-32.927-2.207L73.586 78h32.827l.5.5 7.294 7.293L115.414 87l-24.707 24.707-.707.707L64.586 87l1.207-1.207zm2.62.207L74 80.414 79.586 86H68.414L74 80.414zm16 0L90 80.414 95.586 86H84.414L90 80.414zm16 0L106 80.414 111.586 86h-11.172L106 80.414zM87.414 91.414L92 96.586 97.414 91.414 92 86.828 87.414 91.414z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--bg-pattern-about); /* Use theme variable */
+            opacity: 0.05;
             z-index: 0;
         }
-        
+
         .game-header {
             text-align: center;
             margin-bottom: 30px;
             position: relative;
             z-index: 1;
         }
-        
-        .game-header h3 {
-            color: var(--accent-color);
+
+        .game-header h3 { /* Game Title in Header */
+            color: var(--color-accent);
             font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            text-transform: var(--text-transform-heading);
+            letter-spacing: var(--letter-spacing-heading);
             margin-bottom: 10px;
             text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
         }
-        
-        .guide-link {
+         .game-content-wrapper[data-theme="stars"] .game-header h3 {
+             text-shadow: none;
+             color: var(--color-secondary); /* Purple for stars */
+         }
+
+        .guide-link { /* Style as a small button */
             display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--dark);
+            background-color: var(--color-accent);
+            color: var(--color-text-dark);
             padding: 8px 15px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
             margin-top: 10px;
             transition: all 0.3s ease;
-            text-transform: uppercase;
+            text-transform: var(--text-transform-btn-small);
             font-size: 0.9rem;
-            letter-spacing: 1px;
+            letter-spacing: var(--letter-spacing-btn-small);
             position: relative;
             z-index: 1;
+            border: none;
         }
-        
+
         .guide-link:hover {
-            background-color: var(--secondary-color);
+            background-color: var(--color-secondary);
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: var(--shadow-btn-hover);
         }
-        
+         .game-content-wrapper[data-theme="stars"] .guide-link {
+             background-color: var(--color-accent-dark); /* Yellow */
+             color: var(--color-text-dark);
+         }
+         .game-content-wrapper[data-theme="stars"] .guide-link:hover {
+             background-color: var(--color-accent); /* Light blue */
+             color: var(--color-text-dark);
+         }
+
         .puzzle-container {
             display: flex;
             flex-direction: column;
@@ -80,243 +136,397 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .puzzle-grid {
             display: grid;
-            grid-template-columns: repeat(3, 80px);
-            grid-template-rows: repeat(3, 80px);
-            gap: 10px;
+            grid-template-columns: repeat(3, 70px); /* Slightly smaller cells */
+            grid-template-rows: repeat(3, 70px);
+            gap: 8px; /* Slightly smaller gap */
             position: relative;
         }
-        
+
         .puzzle-cell {
-            width: 80px;
-            height: 80px;
-            background-color: var(--dark);
-            border: 2px solid var(--primary-color);
+            width: 70px;
+            height: 70px;
+            background-color: var(--color-bg-dark); /* Theme dark */
+            border: 2px solid var(--color-primary);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.8rem;
             font-weight: 600;
-            color: var(--light);
+            color: var(--color-text-light); /* Theme light */
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-card);
         }
-        
-        .puzzle-cell:hover {
-            background-color: rgba(30, 58, 138, 0.3);
+         .game-content-wrapper[data-theme="stars"] .puzzle-cell {
+             background-color: var(--color-bg-light); /* Light pink */
+             border-color: var(--color-secondary); /* Purple border */
+             color: var(--color-text-dark); /* Dark text */
+         }
+
+
+        .puzzle-cell:hover:not(.filled):not(.fixed) { /* Only hover empty, non-fixed cells */
+            background-color: rgba(from var(--color-primary) r g b / 0.3);
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            box-shadow: var(--shadow-card-hover);
         }
-        
-        .puzzle-cell.filled {
-            background-color: var(--primary-color);
-            color: white;
+         .game-content-wrapper[data-theme="stars"] .puzzle-cell:hover:not(.filled):not(.fixed) {
+             background-color: rgba(from var(--color-secondary) r g b / 0.2);
+         }
+
+        .puzzle-cell.filled { /* User filled or initially filled */
             cursor: default;
-            border-color: rgba(255, 255, 255, 0.3);
         }
-        
+        .puzzle-cell.fixed { /* Initially filled, cannot be changed */
+             background-color: var(--color-primary);
+             color: white;
+             border-color: rgba(255, 255, 255, 0.3);
+        }
+         .game-content-wrapper[data-theme="stars"] .puzzle-cell.fixed {
+             background-color: var(--color-secondary); /* Purple fixed */
+             color: white;
+             border-color: rgba(255, 255, 255, 0.5);
+         }
+
+
         .puzzle-cell.correct {
-            background-color: var(--secondary-color);
+            background-color: var(--color-secondary);
             color: white;
-            border-color: var(--secondary-color);
-            animation: pulse 1.5s infinite;
+            border-color: var(--color-secondary);
+            /* Animation applied via theme-specific rules below */
         }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+         .game-content-wrapper[data-theme="stars"] .puzzle-cell.correct {
+             background-color: var(--color-accent-dark); /* Yellow correct */
+             color: var(--color-text-dark);
+             border-color: var(--color-accent-dark);
+             /* Animation applied via theme-specific rules below */
+         }
+
+        /* Define separate pulse animations for each theme */
+        @keyframes pulse-blasters {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } /* --color-secondary */
             70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
-        
+        @keyframes pulse-stars {
+            0% { box-shadow: 0 0 0 0 rgba(255, 209, 102, 0.7); } /* --color-accent-dark */
+            70% { box-shadow: 0 0 0 10px rgba(255, 209, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 209, 102, 0); }
+        }
+
+        /* Apply correct animation based on theme */
+        .game-content-wrapper[data-theme="blasters"] .puzzle-cell.correct {
+            animation: pulse-blasters 1.5s infinite;
+        }
+        .game-content-wrapper[data-theme="stars"] .puzzle-cell.correct {
+            animation: pulse-stars 1.5s infinite;
+        }
+
+
         .puzzle-cell.incorrect {
-            background-color: var(--dark-accent);
+            background-color: var(--color-accent-dark); /* Red incorrect */
             color: white;
-            border-color: var(--dark-accent);
+            border-color: var(--color-accent-dark);
             animation: shake 0.5s;
         }
-        
+         .game-content-wrapper[data-theme="stars"] .puzzle-cell.incorrect {
+             background-color: var(--color-primary); /* Pink incorrect */
+             color: white;
+             border-color: var(--color-primary);
+         }
+
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
             20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
-        
+
         .number-pad {
             display: grid;
-            grid-template-columns: repeat(5, 50px);
-            gap: 10px;
+            grid-template-columns: repeat(5, 45px); /* Smaller buttons */
+            gap: 8px;
             margin-top: 20px;
         }
-        
+
         .number-btn {
-            width: 50px;
-            height: 50px;
-            background-color: var(--accent-color);
+            width: 45px;
+            height: 45px;
+            background-color: var(--color-accent);
             border: none;
-            border-radius: 10px;
-            font-size: 1.5rem;
+            border-radius: 8px; /* Slightly less rounded */
+            font-size: 1.4rem;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--color-text-dark);
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-btn);
         }
-        
+
         .number-btn:hover {
-            background-color: #e59009;
+            background-color: #e59009; /* Darker amber */
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-btn-hover);
         }
-        
+         .game-content-wrapper[data-theme="stars"] .number-btn {
+             background-color: var(--color-accent-dark); /* Yellow */
+             color: var(--color-text-dark);
+         }
+         .game-content-wrapper[data-theme="stars"] .number-btn:hover {
+             background-color: #ffc107; /* Lighter yellow */
+         }
+
+
+        .number-btn.clear-btn { /* Specific style for clear */
+             background-color: var(--color-accent-dark); /* Red */
+             color: white;
+        }
+         .game-content-wrapper[data-theme="stars"] .number-btn.clear-btn {
+             background-color: var(--color-secondary); /* Purple */
+             color: white;
+         }
+         .number-btn.clear-btn:hover {
+             opacity: 0.8;
+         }
+
+
         .controls {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px; /* Smaller gap */
             margin-top: 30px;
             position: relative;
             z-index: 1;
+            flex-wrap: wrap; /* Allow wrapping */
         }
-        
+
         .level-display {
             text-align: center;
             margin-bottom: 20px;
             font-size: 1.2rem;
-            background-color: var(--dark);
+            background-color: rgba(0,0,0,0.2);
             padding: 10px;
             border-radius: 10px;
-            border: 1px solid var(--primary-color);
+            border: 1px solid var(--color-primary);
             position: relative;
             z-index: 1;
+            color: inherit;
         }
-        
+         .game-content-wrapper[data-theme="stars"] .level-display {
+             background-color: rgba(255,255,255,0.3);
+             border-color: var(--color-primary);
+         }
+
         .level {
             font-weight: 600;
-            color: var(--secondary-color);
+            color: var(--color-secondary);
         }
-        
+
         .score {
             font-weight: 600;
-            color: var(--accent-color);
+            color: var(--color-accent);
         }
-        
-        .btn {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-        }
-        
+
+        /* Use core .btn styles */
+         #next-btn {
+             background-color: var(--color-secondary);
+             color: white;
+         }
+         #reset-btn {
+             background-color: var(--color-accent-dark); /* Red */
+             color: white;
+         }
+         .game-content-wrapper[data-theme="stars"] #next-btn {
+             background-color: var(--color-accent-dark); /* Yellow */
+             color: var(--color-text-dark);
+         }
+         .game-content-wrapper[data-theme="stars"] #reset-btn {
+             background-color: var(--color-secondary); /* Purple */
+             color: white;
+         }
+         #next-btn:hover, #reset-btn:hover {
+             opacity: 0.8;
+         }
+
+
         @media (max-width: 500px) {
             .puzzle-grid {
                 grid-template-columns: repeat(3, 60px);
                 grid-template-rows: repeat(3, 60px);
             }
-            
-            .puzzle-cell {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-            
-            .number-pad {
-                grid-template-columns: repeat(5, 40px);
-            }
-            
-            .number-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
+            .puzzle-cell { width: 60px; height: 60px; font-size: 1.5rem; }
+            .number-pad { grid-template-columns: repeat(5, 40px); }
+            .number-btn { width: 40px; height: 40px; font-size: 1.2rem; }
         }
+         @media (max-width: 350px) {
+             .number-pad { grid-template-columns: repeat(3, 40px); justify-content: center;} /* Stack numpad */
+         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="logo">
-                <h1>MathBlasters</h1>
-                <p class="tagline">Epic Math Adventures for Cool Boys!</p>
+                <h1 id="app-title">MathBlasters</h1>
+                <p class="tagline" id="app-tagline">Loading theme...</p>
             </div>
             <nav>
-                <ul>
-                    <li><a href="../index.html">HQ</a></li>
-                    <li><a href="../index.html#games">Missions</a></li>
-                    <li><a href="../index.html#about">Intel</a></li>
-                    <li><a href="../../index.html">Switch Version</a></li>
+                 <ul>
+                    <li><a id="nav-link-1" href="../app.html?theme=blasters#">HQ</a></li>
+                    <li><a id="nav-link-2" href="../app.html?theme=blasters#content">Missions</a></li>
+                    <li><a id="nav-link-3" href="../app.html?theme=blasters#guides">Field Guides</a></li>
+                    <li><a id="nav-link-4" href="../app.html?theme=blasters#about">Intel</a></li>
+                    <li><a href="../index.html">Switch Version</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- Hero -->
     <section class="hero" style="padding: 40px 0;">
         <div class="container">
-            <h2>Puzzle Assault</h2>
-            <p>Crack the code by solving puzzles with addition and subtraction!</p>
+            <h2 id="game-hero-title">Puzzle Assault</h2>
+            <p id="game-hero-subtitle">Crack the code by solving puzzles with addition and subtraction!</p>
         </div>
     </section>
 
     <div class="container">
-        <div class="game-container">
+        <!-- Game Content -->
+        <div class="game-content-wrapper" data-theme="blasters">
             <div class="game-header">
-                <h3>Code Breaker</h3>
-                <p>Fill in the missing numbers to crack the code. Each row and column must add up to the target sum.</p>
-                <a href="../guides/math-puzzle-guide.html" class="guide-link">View Field Guide</a>
+                <h3 id="game-briefing-title">Code Breaker</h3>
+                <p id="game-briefing-desc">Fill in the missing numbers to crack the code. Each row, column, and diagonal must add up to the target sum.</p>
+                 <!-- Link guide with theme -->
+                <a href="../guides/math-puzzle-guide.html" class="guide-link" id="guide-link">View Field Guide</a>
             </div>
-            
+
             <div class="level-display">
-                <span>Mission Level: <span class="level">1</span></span> | 
-                <span>Score: <span class="score">0</span></span>
+                <span id="level-label">Mission Level:</span> <span class="level">1</span> |
+                <span id="score-label">Score:</span> <span class="score">0</span>
             </div>
-            
+
             <div class="puzzle-container">
+                 <div id="target-sum-display" style="font-size: 1.2em; margin-bottom: 15px; font-weight: bold; color: var(--color-accent);">Target Sum: 15</div>
                 <div class="puzzle-grid" id="puzzle-grid">
                     <!-- Puzzle cells will be generated by JavaScript -->
                 </div>
-                
+
                 <div class="number-pad" id="number-pad">
                     <!-- Number buttons will be generated by JavaScript -->
                 </div>
             </div>
-            
+
             <div class="controls">
                 <button class="btn" id="check-btn">Verify Code</button>
-                <button class="btn" id="next-btn" style="background-color: var(--secondary-color);">Next Level</button>
-                <button class="btn" id="reset-btn" style="background-color: var(--dark-accent);">Abort Mission</button>
+                <button class="btn" id="next-btn">Next Level</button>
+                <button class="btn" id="reset-btn">Abort Mission</button>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 MathBlasters HQ. All rights reserved.</p>
+             <div class="footer-info">
+                <p>&copy; <span id="footer-year">2023</span> <span id="footer-brand">MathBlasters HQ</span>. All rights reserved.</p>
+             </div>
             <div class="footer-links">
-                <a href="../index.html#guides">Field Guides</a>
-                <a href="#">Mission Rules</a>
-                <a href="#">Contact HQ</a>
-                <a href="../../index.html">Switch Version</a>
+                <a id="footer-link-1" href="../app.html?theme=blasters#guides">Field Guides</a>
+                <a id="footer-link-2" href="#">Mission Rules</a>
+                <a id="footer-link-3" href="#">Contact HQ</a>
+                <a href="../index.html">Switch Version</a>
             </div>
         </div>
     </footer>
 
+    <!-- Link Core JS -->
+    <script src="../js/core/app.js"></script>
+
+    <!-- Game Specific JS -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const puzzleGrid = document.getElementById('puzzle-grid');
-            const numberPad = document.getElementById('number-pad');
+            const theme = window.APP_THEME;
+            const isStars = theme === 'stars';
+
+            // Initialize core features
+             initializeCoreApp({
+                 themeName: theme,
+                 buttonSelector: '.btn, .guide-link, .number-btn' // Include numpad buttons
+             });
+
+             // Set theme attribute on wrapper
+             const wrapper = document.querySelector('.game-content-wrapper');
+             if(wrapper) {
+                 wrapper.setAttribute('data-theme', theme);
+             }
+
+            // --- Dynamic Content Update ---
+            const gameName = isStars ? "Puzzle Paradise" : "Puzzle Assault";
+            document.title = `${gameName} - ${isStars ? 'MathStars' : 'MathBlasters'}`;
+
+            // Header
+            document.getElementById('app-title').textContent = isStars ? 'MathStars' : 'MathBlasters';
+            document.getElementById('app-tagline').textContent = isStars ? 'Magical Math Adventures for Girls!' : 'Epic Math Adventures for Cool Boys!';
+             document.getElementById('nav-link-1').textContent = isStars ? 'Home' : 'HQ';
+            document.getElementById('nav-link-1').href = `../app.html?theme=${theme}#`;
+            document.getElementById('nav-link-2').textContent = isStars ? 'Adventures' : 'Missions';
+             document.getElementById('nav-link-2').href = `../app.html?theme=${theme}#content`;
+            document.getElementById('nav-link-3').textContent = isStars ? 'Magic Guides' : 'Field Guides';
+             document.getElementById('nav-link-3').href = `../app.html?theme=${theme}#guides`;
+            document.getElementById('nav-link-4').textContent = isStars ? 'About Magic' : 'Intel';
+             document.getElementById('nav-link-4').href = `../app.html?theme=${theme}#about`;
+
+            // Game Hero
+            document.getElementById('game-hero-title').textContent = gameName;
+            document.getElementById('game-hero-subtitle').textContent = isStars
+                ? `Solve enchanting puzzles using addition and subtraction!`
+                : `Crack the code by solving puzzles with addition and subtraction!`;
+
+            // Game Content
+            document.getElementById('game-briefing-title').textContent = isStars ? 'Puzzle Garden' : 'Code Breaker';
+            document.getElementById('game-briefing-desc').textContent = isStars
+                ? `Fill in the missing numbers to make the garden bloom. Each row, column, and diagonal must add up to the magic sum.`
+                : `Fill in the missing numbers to crack the code. Each row, column, and diagonal must add up to the target sum.`;
+            const guideLink = document.getElementById('guide-link');
+            guideLink.href = `../guides/math-puzzle-guide.html?theme=${theme}`; // Pass theme
+            guideLink.textContent = isStars ? 'View Magic Guide' : 'View Field Guide';
+
+            document.getElementById('level-label').textContent = isStars ? 'Garden Level:' : 'Mission Level:';
+            // Score label is fine
+
             const checkBtn = document.getElementById('check-btn');
             const nextBtn = document.getElementById('next-btn');
             const resetBtn = document.getElementById('reset-btn');
+            checkBtn.textContent = isStars ? 'Check Flowers' : 'Verify Code';
+            nextBtn.textContent = isStars ? 'Next Garden' : 'Next Level';
+            resetBtn.textContent = isStars ? 'Restart Garden' : 'Abort Mission';
+
+
+            // Footer
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+            document.getElementById('footer-brand').textContent = isStars ? 'MathStars Magic Circle' : 'MathBlasters HQ';
+            document.getElementById('footer-link-1').href = `../app.html?theme=${theme}#guides`;
+            document.getElementById('footer-link-1').textContent = isStars ? 'Magic Guides' : 'Field Guides';
+            // Update other footer links if needed
+
+
+            // --- Game Logic (Puzzle Assault / Paradise) ---
+            const puzzleGrid = document.getElementById('puzzle-grid');
+            const numberPad = document.getElementById('number-pad');
             const levelDisplay = document.querySelector('.level');
             const scoreDisplay = document.querySelector('.score');
-            
+            const targetSumDisplay = document.getElementById('target-sum-display');
+
             let level = 1;
             let score = 0;
             let selectedCell = null;
-            let puzzle = [];
-            let solution = [];
-            
+            let puzzle = []; // The grid with some numbers hidden (0)
+            let solution = []; // The complete correct grid
+            let targetSum = 15; // Default, can be changed
+
             // Initialize the game
             function initGame() {
                 // Create number pad
@@ -325,190 +535,199 @@
                     const numberBtn = document.createElement('button');
                     numberBtn.className = 'number-btn';
                     numberBtn.textContent = i;
-                    numberBtn.addEventListener('click', () => {
-                        if (selectedCell) {
-                            selectedCell.textContent = i;
-                            selectedCell.classList.add('filled');
-                            selectedCell = null;
-                            
-                            // Remove highlight from all cells
-                            document.querySelectorAll('.puzzle-cell').forEach(cell => {
-                                cell.style.boxShadow = 'none';
-                            });
-                        }
-                    });
+                    numberBtn.addEventListener('click', handleNumberInput);
                     numberPad.appendChild(numberBtn);
                 }
-                
+
                 // Add clear button
                 const clearBtn = document.createElement('button');
-                clearBtn.className = 'number-btn';
+                clearBtn.className = 'number-btn clear-btn';
                 clearBtn.textContent = 'C';
-                clearBtn.style.backgroundColor = '#DC2626';
-                clearBtn.style.color = 'white';
-                clearBtn.addEventListener('click', () => {
-                    if (selectedCell && !selectedCell.classList.contains('fixed')) {
-                        selectedCell.textContent = '';
-                        selectedCell.classList.remove('filled');
-                        selectedCell = null;
-                        
-                        // Remove highlight from all cells
-                        document.querySelectorAll('.puzzle-cell').forEach(cell => {
-                            cell.style.boxShadow = 'none';
-                        });
-                    }
-                });
+                clearBtn.addEventListener('click', handleClearInput);
                 numberPad.appendChild(clearBtn);
-                
+
                 // Generate puzzle
                 generatePuzzle();
+                updateUI(); // Update level/score display
             }
-            
+
+            // Handle number input from pad
+            function handleNumberInput() {
+                if (selectedCell && !selectedCell.classList.contains('fixed')) {
+                    selectedCell.textContent = this.textContent;
+                    selectedCell.classList.add('filled');
+                    selectedCell.classList.remove('incorrect'); // Remove incorrect state if re-entering
+                    deselectCell();
+                }
+            }
+
+            // Handle clear input
+            function handleClearInput() {
+                 if (selectedCell && !selectedCell.classList.contains('fixed')) {
+                    selectedCell.textContent = '';
+                    selectedCell.classList.remove('filled', 'incorrect', 'correct');
+                    deselectCell();
+                }
+            }
+
             // Generate a new puzzle
             function generatePuzzle() {
                 puzzleGrid.innerHTML = '';
-                
-                // Reset cell states
-                document.querySelectorAll('.puzzle-cell').forEach(cell => {
-                    cell.classList.remove('correct', 'incorrect');
-                });
-                
-                // Generate puzzle based on level
-                const difficulty = Math.min(level, 5);
-                const numEmpty = 3 + difficulty;
-                
-                // Create a valid 3x3 puzzle
-                solution = [];
-                const targetSum = 15; // Sum of each row and column
-                
-                // Generate a valid solution (using a magic square for simplicity)
+                selectedCell = null; // Deselect any cell
+
+                // TODO: Implement more robust puzzle generation for higher levels
+                // For now, using a standard magic square and hiding cells
+                const difficulty = Math.min(level, 6); // Max difficulty hides 6 cells
+                const numEmpty = 2 + difficulty; // Start with 3 empty, up to 8
+                targetSum = 15; // Standard 3x3 magic sum
+
+                // Standard 3x3 Magic Square
                 const magicSquare = [
                     [8, 1, 6],
                     [3, 5, 7],
                     [4, 9, 2]
                 ];
-                
+
                 // Copy the magic square to our solution
-                for (let i = 0; i < 3; i++) {
-                    solution[i] = [...magicSquare[i]];
-                }
-                
+                solution = magicSquare.map(row => [...row]);
+
                 // Create the puzzle by hiding some numbers
-                puzzle = [];
-                for (let i = 0; i < 3; i++) {
-                    puzzle[i] = [...solution[i]];
-                }
-                
+                puzzle = solution.map(row => [...row]);
+
                 // Randomly hide numbers
-                let emptyCells = [];
-                for (let i = 0; i < 3; i++) {
-                    for (let j = 0; j < 3; j++) {
-                        emptyCells.push([i, j]);
+                let emptyCellsCoords = [];
+                for (let r = 0; r < 3; r++) {
+                    for (let c = 0; c < 3; c++) {
+                        emptyCellsCoords.push([r, c]);
                     }
                 }
-                
-                // Shuffle and select cells to empty
-                emptyCells.sort(() => Math.random() - 0.5);
+                emptyCellsCoords.sort(() => Math.random() - 0.5); // Shuffle coordinates
+
                 for (let i = 0; i < numEmpty; i++) {
-                    if (i < emptyCells.length) {
-                        const [row, col] = emptyCells[i];
+                    if (i < emptyCellsCoords.length) {
+                        const [row, col] = emptyCellsCoords[i];
                         puzzle[row][col] = 0; // 0 represents an empty cell
                     }
                 }
-                
-                // Create the puzzle grid
-                for (let i = 0; i < 3; i++) {
-                    for (let j = 0; j < 3; j++) {
+
+                // Create the puzzle grid DOM
+                for (let r = 0; r < 3; r++) {
+                    for (let c = 0; c < 3; c++) {
                         const cell = document.createElement('div');
                         cell.className = 'puzzle-cell';
-                        cell.dataset.row = i;
-                        cell.dataset.col = j;
-                        
-                        if (puzzle[i][j] !== 0) {
-                            cell.textContent = puzzle[i][j];
-                            cell.classList.add('filled', 'fixed');
+                        cell.dataset.row = r;
+                        cell.dataset.col = c;
+
+                        if (puzzle[r][c] !== 0) {
+                            cell.textContent = puzzle[r][c];
+                            cell.classList.add('filled', 'fixed'); // Mark initial numbers as fixed
                         } else {
                             cell.addEventListener('click', selectCell);
                         }
-                        
                         puzzleGrid.appendChild(cell);
                     }
                 }
-                
-                // Add target sum indicators
-                const targetSumIndicator = document.createElement('div');
-                targetSumIndicator.className = 'puzzle-cell';
-                targetSumIndicator.style.backgroundColor = 'var(--accent-color)';
-                targetSumIndicator.style.gridColumn = '1 / span 3';
-                targetSumIndicator.style.marginTop = '10px';
-                targetSumIndicator.style.color = 'var(--dark)';
-                targetSumIndicator.style.fontWeight = 'bold';
-                targetSumIndicator.textContent = `TARGET: ${targetSum}`;
-                puzzleGrid.appendChild(targetSumIndicator);
-                
-                levelDisplay.textContent = level;
+                 targetSumDisplay.textContent = `Target Sum: ${targetSum}`;
             }
-            
+
             // Select a cell
             function selectCell() {
-                // Remove highlight from all cells
-                document.querySelectorAll('.puzzle-cell').forEach(cell => {
-                    cell.style.boxShadow = 'none';
-                });
-                
-                // Highlight the selected cell
-                this.style.boxShadow = '0 0 0 3px var(--accent-color), 0 0 15px var(--accent-color)';
-                selectedCell = this;
+                 if (this.classList.contains('fixed')) return; // Cannot select fixed cells
+
+                 deselectCell(); // Deselect previous cell
+
+                 // Highlight the selected cell
+                 this.style.boxShadow = `0 0 0 3px var(${isStars ? '--color-secondary' : '--color-accent'}), 0 0 15px var(${isStars ? '--color-secondary' : '--color-accent'})`;
+                 selectedCell = this;
             }
-            
+
+            // Deselect cell
+            function deselectCell() {
+                 if (selectedCell) {
+                     selectedCell.style.boxShadow = ''; // Reset shadow
+                 }
+                 selectedCell = null;
+            }
+
+
             // Check if the puzzle is solved correctly
             function checkPuzzle() {
                 let allCorrect = true;
-                const cells = document.querySelectorAll('.puzzle-cell:not([style*="grid-column"])');
-                
-                // Check each cell
+                let allFilled = true;
+                const cells = puzzleGrid.querySelectorAll('.puzzle-cell');
+
                 cells.forEach(cell => {
+                    if (cell.classList.contains('fixed')) return; // Skip fixed cells
+
                     const row = parseInt(cell.dataset.row);
                     const col = parseInt(cell.dataset.col);
-                    
-                    if (cell.textContent === '' || parseInt(cell.textContent) !== solution[row][col]) {
+                    const userValue = cell.textContent === '' ? 0 : parseInt(cell.textContent);
+                    const correctValue = solution[row][col];
+
+                    cell.classList.remove('correct', 'incorrect'); // Reset visual state
+
+                    if (userValue === 0) {
+                        allFilled = false; // Mark as not completely filled
+                        // Optionally add a 'missing' style
+                    } else if (userValue === correctValue) {
+                        cell.classList.add('correct');
+                    } else {
                         cell.classList.add('incorrect');
                         allCorrect = false;
-                    } else {
-                        cell.classList.add('correct');
                     }
                 });
-                
+
+                if (!allFilled) {
+                     alert(isStars ? "Some flowers haven't bloomed yet! Fill all the spots." : "Incomplete code! Fill all empty cells.");
+                     return; // Don't proceed if not filled
+                }
+
                 if (allCorrect) {
-                    score += level * 10;
-                    scoreDisplay.textContent = score;
-                    
+                    score += level * 10; // Increase score
+                    updateUI();
                     setTimeout(() => {
-                        alert(`Code cracked! Mission level ${level} complete. Your score: ${score}`);
-                        level++;
-                        generatePuzzle();
-                    }, 500);
+                        alert(isStars ? `Beautiful! Garden level ${level} complete. Your score: ${score}` : `Code cracked! Mission level ${level} complete. Your score: ${score}`);
+                        // Optionally disable check button until next level
+                    }, 300);
+                } else {
+                     // Optionally provide feedback that something is wrong
+                     setTimeout(() => {
+                         // Remove incorrect class after shake animation
+                         cells.forEach(cell => cell.classList.remove('incorrect'));
+                     }, 600);
                 }
             }
-            
+
+            // Go to next level
+            function nextLevel() {
+                 level++;
+                 generatePuzzle();
+                 updateUI();
+            }
+
+            // Reset game
+            function resetGame() {
+                 level = 1;
+                 score = 0;
+                 generatePuzzle();
+                 updateUI();
+            }
+
+            // Update UI elements
+            function updateUI() {
+                 levelDisplay.textContent = level;
+                 scoreDisplay.textContent = score;
+            }
+
+
             // Event listeners
             checkBtn.addEventListener('click', checkPuzzle);
-            
-            nextBtn.addEventListener('click', () => {
-                level++;
-                generatePuzzle();
-            });
-            
-            resetBtn.addEventListener('click', () => {
-                level = 1;
-                score = 0;
-                scoreDisplay.textContent = score;
-                generatePuzzle();
-            });
-            
+            nextBtn.addEventListener('click', nextLevel);
+            resetBtn.addEventListener('click', resetGame);
+
             // Initialize the game
             initGame();
         });
     </script>
 </body>
-</html> 
+</html>
