@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title will be set dynamically based on theme -->
+    <title>Math Adventures</title>
+
+    <!-- Link Core CSS -->
+    <link rel="stylesheet" href="css/core.css">
+
+    <!-- Placeholder for Theme CSS (will be added dynamically) -->
+    <link id="theme-style" rel="stylesheet" href="">
+
+    <!-- Fonts (Consider loading fonts via theme CSS or dynamically) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Example: Load both fonts, theme CSS will specify which one to use -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Inline script for early theme loading -->
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const theme = params.get('theme') || 'blasters'; // Default to blasters
+        const validThemes = ['blasters', 'stars'];
+        const currentTheme = validThemes.includes(theme) ? theme : 'blasters';
+
+        // Set theme attribute on body
+        document.documentElement.setAttribute('data-theme', currentTheme); // Set on <html> for early access
+
+        // Set theme CSS
+        const themeStyleLink = document.getElementById('theme-style');
+        themeStyleLink.setAttribute('href', `css/theme-${currentTheme}.css`);
+
+        // Store theme info for app.js (can also use data attribute)
+        window.APP_THEME = currentTheme;
+        window.ASSET_PATH = `assets/${currentTheme}/images/`; // Base path for images
+
+        // Set page title dynamically
+        document.title = currentTheme === 'stars'
+            ? 'MathStars - Magical Math Adventures'
+            : 'MathBlasters - Epic Math Missions';
+
+    </script>
+
+    <!-- Styles for Guides (Consider moving to core/theme CSS) -->
+    <style>
+        .guides-section {
+            /* Use CSS variables from core/theme */
+            background-color: var(--color-bg-dark); /* Example */
+            padding: 60px 0;
+            position: relative;
+            color: var(--color-text-light); /* Example */
+        }
+
+        .guides-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--bg-pattern-about); /* Use a relevant pattern variable */
+            opacity: 0.1; /* Example opacity */
+            z-index: 0;
+        }
+
+        .guides-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .guide-card { /* Use generic .content-card styles? Or keep separate? */
+            background-color: var(--color-card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .guide-img {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            /* Background color can be set dynamically or via theme */
+        }
+
+        .guide-img img {
+            max-width: 80px;
+            max-height: 80px;
+        }
+
+        .guide-card-text {
+             padding: 20px;
+             flex-grow: 1;
+        }
+
+        .guide-card h3 {
+            color: var(--color-accent); /* Use theme variable */
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .guide-card p {
+            color: var(--color-text-dark); /* Use theme variable */
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .guide-card .btn-small {
+             margin-top: auto; /* Push button to bottom */
+        }
+    </style>
+</head>
+<!-- Body tag might be dynamically updated by script, but setting default is fine -->
+<body data-theme="blasters">
+    <header>
+        <div class="container">
+            <div class="logo">
+                <!-- Text content (e.g., MathBlasters/MathStars) should be set dynamically -->
+                <h1 id="app-title">MathBlasters</h1>
+                <p class="tagline" id="app-tagline">Epic Math Adventures for Cool Boys!</p>
+            </div>
+            <nav>
+                <ul>
+                    <!-- Navigation items might need dynamic text -->
+                    <li><a href="#" class="active">HQ</a></li>
+                    <li><a href="#content">Missions</a></li>
+                    <li><a href="#guides">Field Guides</a></li>
+                    <li><a href="#about">Intel</a></li>
+                    <li><a href="index.html">Switch Version</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <!-- Dynamic Text -->
+            <h2 id="hero-title">Epic Math Challenges</h2>
+            <p id="hero-subtitle">Ready to prove your skills? Take on our collection of math missions and become the ultimate Math Blaster!</p>
+            <a href="#content" class="btn" id="hero-cta">Start Your Mission</a>
+        </div>
+    </section>
+
+    <!-- Use generic class .content-section -->
+    <section id="content" class="content-section">
+        <div class="container">
+            <!-- Dynamic Text -->
+            <h2 id="content-heading">Your Missions</h2>
+            <!-- Use generic class .content-grid -->
+            <div class="content-grid" id="content-grid">
+                <!-- Cards will be generated dynamically or use placeholders -->
+                <div class="content-card">
+                    <div class="content-card-img" style="background-color: var(--color-primary);"> <!-- Use theme color -->
+                        <!-- Dynamic Image Path -->
+                        <img src="assets/blasters/images/number-match.svg" alt="Number Match" data-img-src="number-match.svg">
+                    </div>
+                    <div class="content-card-text">
+                        <!-- Dynamic Text -->
+                        <h3>Number Strike</h3>
+                        <p>Match numbers to their equivalent expressions and defeat the math monsters</p>
+                    </div>
+                     <!-- Link to unified game page with params -->
+                    <a href="games/number-match.html" class="btn-small">Accept Mission</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-img" style="background-color: var(--color-secondary);"> <!-- Use theme color -->
+                        <!-- Dynamic Image Path -->
+                        <img src="assets/blasters/images/math-puzzle.svg" alt="Math Puzzle" data-img-src="math-puzzle.svg">
+                    </div>
+                     <div class="content-card-text">
+                        <!-- Dynamic Text -->
+                        <h3>Puzzle Assault</h3>
+                        <p>Crack the code by solving puzzles with addition and subtraction</p>
+                    </div>
+                    <!-- Link to unified game page with params -->
+                    <a href="games/math-puzzle.html" class="btn-small">Accept Mission</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-img" style="background-color: var(--color-primary);"> <!-- Use theme color -->
+                         <!-- Dynamic Image Path -->
+                        <img src="assets/blasters/images/shape-sort.svg" alt="Shape Sort" data-img-src="shape-sort.svg">
+                    </div>
+                     <div class="content-card-text">
+                        <!-- Dynamic Text -->
+                        <h3>Shape Blaster</h3>
+                        <p>Infiltrate enemy territory by sorting shapes by their properties</p>
+                    </div>
+                     <!-- Link to unified game page with params -->
+                    <a href="games/shape-sort.html" class="btn-small">Coming Soon</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-card-img" style="background-color: var(--color-accent-dark);"> <!-- Use theme color -->
+                         <!-- Dynamic Image Path -->
+                        <img src="assets/blasters/images/math-race.svg" alt="Math Race" data-img-src="math-race.svg">
+                    </div>
+                     <div class="content-card-text">
+                        <!-- Dynamic Text -->
+                        <h3>Math Race</h3>
+                        <p>Race against time to solve multiplication problems and win the championship</p>
+                    </div>
+                     <!-- Link to unified game page with params -->
+                    <a href="games/math-race.html" class="btn-small">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guides" class="guides-section">
+        <div class="container">
+             <!-- Dynamic Text -->
+            <h2>Field Guides</h2>
+            <p>Every elite agent needs proper training. Check out these field guides to master each mission!</p>
+            <div class="guides-grid" id="guides-grid">
+                 <!-- Guide cards - similar dynamic content needed -->
+                <div class="guide-card">
+                    <div class="guide-img" style="background-color: var(--color-primary);">
+                        <img src="assets/blasters/images/number-match.svg" alt="Number Strike Guide" data-img-src="number-match.svg">
+                    </div>
+                    <div class="guide-card-text">
+                        <h3>Number Strike Guide</h3>
+                        <p>Learn the tactics to match numbers and defeat math monsters</p>
+                    </div>
+                    <a href="guides/number-strike-guide.html" class="btn-small">Read Guide</a>
+                </div>
+                 <div class="guide-card">
+                    <div class="guide-img" style="background-color: var(--color-secondary);">
+                        <img src="assets/blasters/images/math-puzzle.svg" alt="Math Puzzle Guide" data-img-src="math-puzzle.svg">
+                    </div>
+                    <div class="guide-card-text">
+                        <h3>Puzzle Assault Guide</h3>
+                        <p>Master the strategies to solve puzzles and crack the code</p>
+                    </div>
+                    <a href="guides/math-puzzle-guide.html" class="btn-small">Read Guide</a>
+                </div>
+                 <div class="guide-card">
+                    <div class="guide-img" style="background-color: var(--color-primary);">
+                        <img src="assets/blasters/images/shape-sort.svg" alt="Shape Blaster Guide" data-img-src="shape-sort.svg">
+                    </div>
+                    <div class="guide-card-text">
+                        <h3>Shape Blaster Guide</h3>
+                        <p>Learn to identify shapes and become a geometry commando</p>
+                    </div>
+                    <a href="guides/shape-blaster-guide.html" class="btn-small">Read Guide</a>
+                </div>
+                 <div class="guide-card">
+                    <div class="guide-img" style="background-color: var(--color-accent-dark);">
+                        <img src="assets/blasters/images/math-race.svg" alt="Math Race Guide" data-img-src="math-race.svg">
+                    </div>
+                    <div class="guide-card-text">
+                        <h3>Math Race Guide</h3>
+                        <p>Discover speed tactics for multiplication and racing victory</p>
+                    </div>
+                    <a href="guides/math-race-guide.html" class="btn-small">Read Guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+             <!-- Dynamic Text -->
+            <h2 id="about-title">Mission Intel</h2>
+            <p id="about-p1">MathBlasters is an elite training program designed to transform ordinary boys into math champions. Our action-packed missions help you develop essential math skills while having an awesome time!</p>
+            <p id="about-p2">All missions are designed by top-secret math experts and game developers to ensure they're both challenging and epic. Do you have what it takes to become a Math Blaster?</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                 <!-- Dynamic Text -->
+                <p>&copy; <span id="footer-year">2023</span> <span id="footer-brand">MathBlasters HQ</span>. All rights reserved.</p>
+                <p>Created by Alex Jones from Australia</p>
+            </div>
+            <div class="footer-links">
+                 <!-- Dynamic Links/Text -->
+                <a href="#guides">Field Guides</a>
+                <a href="#">Mission Rules</a>
+                <a href="#">Contact HQ</a>
+                <a href="index.html">Switch Version</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link Core JS -->
+    <script src="js/core/app.js"></script>
+
+    <!-- Initialize Core App -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize the core app functionality with the detected theme
+            initializeCoreApp({ themeName: window.APP_THEME });
+
+            // --- Dynamic Content Update ---
+            // (This could be a separate function or module)
+            const theme = window.APP_THEME;
+            const assetPath = window.ASSET_PATH;
+
+            const isStars = theme === 'stars';
+
+            // Update Text Content
+            document.getElementById('app-title').textContent = isStars ? 'MathStars' : 'MathBlasters';
+            document.getElementById('app-tagline').textContent = isStars ? 'Magical Math Adventures for Girls!' : 'Epic Math Adventures for Cool Boys!';
+            document.querySelector('nav ul li:nth-child(1) a').textContent = isStars ? 'Home' : 'HQ';
+            document.querySelector('nav ul li:nth-child(2) a').textContent = isStars ? 'Adventures' : 'Missions';
+            document.querySelector('nav ul li:nth-child(3) a').textContent = isStars ? 'Magic Guides' : 'Field Guides';
+            document.querySelector('nav ul li:nth-child(4) a').textContent = isStars ? 'About Magic' : 'Intel';
+
+            document.getElementById('hero-title').textContent = isStars ? 'Magical Math Fun' : 'Epic Math Challenges';
+            document.getElementById('hero-subtitle').textContent = isStars ? 'Explore enchanting math adventures and make your skills sparkle!' : 'Ready to prove your skills? Take on our collection of math missions and become the ultimate Math Blaster!';
+            document.getElementById('hero-cta').textContent = isStars ? 'Begin Adventure' : 'Start Your Mission';
+
+            document.getElementById('content-heading').textContent = isStars ? 'Your Adventures' : 'Your Missions';
+            document.getElementById('about-title').textContent = isStars ? 'About MathStars' : 'Mission Intel';
+            document.getElementById('about-p1').textContent = isStars ? 'MathStars is an enchanting world where girls can develop math skills through fun, interactive adventures.' : 'MathBlasters is an elite training program designed to transform ordinary boys into math champions. Our action-packed missions help you develop essential math skills while having an awesome time!';
+            document.getElementById('about-p2').textContent = isStars ? 'Designed by educators and fairy godmothers, our games make learning math magical and rewarding!' : 'All missions are designed by top-secret math experts and game developers to ensure they\'re both challenging and epic. Do you have what it takes to become a Math Blaster?';
+
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+            document.getElementById('footer-brand').textContent = isStars ? 'MathStars Magic Circle' : 'MathBlasters HQ';
+            // Update more footer links if needed
+
+            // Update Card Text and Links (Example for first card)
+            const contentCards = document.querySelectorAll('.content-card');
+            const guideCards = document.querySelectorAll('.guide-card');
+
+            const cardData = [ // Structure could be loaded from JSON later
+                { id: 'number-match', blasterTitle: 'Number Strike', starsTitle: 'Number Harmony', blasterDesc: 'Match numbers to their equivalent expressions...', starsDesc: 'Match numbers and create beautiful harmonies...', img: 'number-match.svg', link: 'games/number-match.html', btnText: isStars ? 'Play Now' : 'Accept Mission' },
+                { id: 'math-puzzle', blasterTitle: 'Puzzle Assault', starsTitle: 'Puzzle Paradise', blasterDesc: 'Crack the code by solving puzzles...', starsDesc: 'Solve enchanting puzzles using addition...', img: 'math-puzzle.svg', link: 'games/math-puzzle.html', btnText: isStars ? 'Play Now' : 'Accept Mission' },
+                { id: 'shape-sort', blasterTitle: 'Shape Blaster', starsTitle: 'Shape Sorceress', blasterDesc: 'Infiltrate enemy territory by sorting shapes...', starsDesc: 'Use magical powers to sort shapes...', img: 'shape-sort.svg', link: 'games/shape-sort.html', btnText: 'Coming Soon' },
+                { id: 'math-race', blasterTitle: 'Math Race', starsTitle: 'Rainbow Racer', blasterDesc: 'Race against time to solve multiplication...', starsDesc: 'Race across the rainbow by solving multiplication...', img: 'math-race.svg', link: 'games/math-race.html', btnText: 'Coming Soon' }
+            ];
+
+             const guideData = [
+                { id: 'number-match-guide', blasterTitle: 'Number Strike Guide', starsTitle: 'Number Harmony Guide', blasterDesc: 'Learn the tactics to match numbers...', starsDesc: 'Understand number equivalence in a magical setting...', img: 'number-match.svg', link: 'guides/number-strike-guide.html' }, // Links need updating based on final guide structure
+                { id: 'math-puzzle-guide', blasterTitle: 'Puzzle Assault Guide', starsTitle: 'Puzzle Paradise Guide', blasterDesc: 'Master the strategies to solve puzzles...', starsDesc: 'Tips for solving addition puzzles...', img: 'math-puzzle.svg', link: 'guides/math-puzzle-guide.html' },
+                { id: 'shape-sort-guide', blasterTitle: 'Shape Blaster Guide', starsTitle: 'Shape Sorceress Guide', blasterDesc: 'Learn to identify shapes...', starsDesc: 'Discover geometry through creative patterns...', img: 'shape-sort.svg', link: 'guides/shape-blaster-guide.html' },
+                { id: 'math-race-guide', blasterTitle: 'Math Race Guide', starsTitle: 'Rainbow Racer Guide', blasterDesc: 'Discover speed tactics for multiplication...', starsDesc: 'Tips for racing across the rainbow...', img: 'math-race.svg', link: 'guides/math-race-guide.html' }
+            ];
+
+
+            contentCards.forEach((card, index) => {
+                const data = cardData[index];
+                if (!data) return;
+                card.querySelector('h3').textContent = isStars ? data.starsTitle : data.blasterTitle;
+                card.querySelector('p').textContent = isStars ? data.starsDesc : data.blasterDesc;
+                const img = card.querySelector('img');
+                img.src = `${assetPath}${data.img}`;
+                img.alt = isStars ? data.starsTitle : data.blasterTitle;
+                const link = card.querySelector('a');
+                link.href = data.link; // Update link if needed
+                link.textContent = data.btnText; // Update button text
+            });
+
+             guideCards.forEach((card, index) => {
+                const data = guideData[index];
+                if (!data) return;
+                card.querySelector('h3').textContent = isStars ? data.starsTitle : data.blasterTitle;
+                card.querySelector('p').textContent = isStars ? data.starsDesc : data.blasterDesc;
+                const img = card.querySelector('img');
+                img.src = `${assetPath}${data.img}`; // Assumes guide images match game images
+                img.alt = (isStars ? data.starsTitle : data.blasterTitle) + " Guide";
+                const link = card.querySelector('a');
+                link.href = `${data.link}?theme=${theme}`; // Update link href with theme
+                // Button text is likely static 'Read Guide'
+            });
+
+        });
+    </script>
+</body>
+</html>

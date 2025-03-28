@@ -1,0 +1,106 @@
+/* ======================================== */
+/* Theme: Blasters                          */
+/* ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
+
+:root {
+    /* --- Fonts --- */
+    --font-primary: 'Fredoka', sans-serif;
+    --font-secondary: 'Fredoka', sans-serif; /* Blasters uses one main font */
+
+    /* --- Colors --- */
+    --color-primary: #1E3A8A; /* Deep blue */
+    --color-secondary: #10B981; /* Emerald green */
+    --color-accent: #F59E0B; /* Amber */
+    --color-accent-dark: #DC2626; /* Red */
+    --color-text-light: #F3F4F6; /* Light gray */
+    --color-text-dark: #111827; /* Nearly black */
+    --color-bg-light: #F3F4F6; /* Light gray (Used in root index, maybe not here) */
+    --color-bg-dark: #111827; /* Nearly black */
+    --color-card-bg: #1F2937; /* Dark blue-gray */
+
+    /* --- Backgrounds --- */
+    --bg-pattern-body: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%231E3A8A' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    --bg-pattern-hero: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    --bg-pattern-about: url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M81.28 88H68.413l19.298 19.298L81.28 88zm2.107 0h13.226L90 107.838 83.387 88zm15.334 0h12.866l-19.298 19.298L98.72 88zm-32.927-2.207L73.586 78h32.827l.5.5 7.294 7.293L115.414 87l-24.707 24.707-.707.707L64.586 87l1.207-1.207zm2.62.207L74 80.414 79.586 86H68.414L74 80.414zm16 0L90 80.414 95.586 86H84.414L90 80.414zm16 0L106 80.414 111.586 86h-11.172L106 80.414zM87.414 91.414L92 96.586 97.414 91.414 92 86.828 87.414 91.414z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+
+    /* --- Gradients --- */
+    --gradient-hero: linear-gradient(135deg, var(--color-primary), var(--color-bg-dark));
+    --gradient-section-heading: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-primary));
+    --gradient-about-heading: linear-gradient(90deg, var(--color-accent), var(--color-secondary), var(--color-accent));
+    --gradient-card-img-overlay: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+    --gradient-btn-hover: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+
+    /* --- Shadows --- */
+    --shadow-header: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 10px 20px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+    --shadow-btn: 0 4px 10px rgba(0, 0, 0, 0.3);
+    --shadow-btn-hover: 0 6px 15px rgba(0, 0, 0, 0.4);
+    --shadow-logo: 2px 2px 0px var(--color-accent-dark);
+    --shadow-hero-h2: 3px 3px 0px var(--color-primary);
+
+    /* --- Borders --- */
+    --border-header-bottom: 2px solid var(--color-accent);
+    --border-footer-top: 2px solid var(--color-primary);
+    --border-card-hover: 2px solid var(--color-accent);
+
+    /* --- Text Styling --- */
+    --text-transform-heading: uppercase;
+    --text-transform-nav: uppercase;
+    --text-transform-btn: uppercase;
+    --text-transform-card-h3: uppercase;
+    --text-transform-btn-small: uppercase;
+
+    --letter-spacing-heading: 2px;
+    --letter-spacing-nav: 1px;
+    --letter-spacing-btn: 1px;
+    --letter-spacing-card-h3: 1px;
+    --letter-spacing-btn-small: 1px;
+}
+
+/* --- Theme Specific Overrides & Additions --- */
+
+body {
+    color: var(--color-text-light); /* Blasters uses light text on dark bg */
+    background-color: var(--color-bg-dark);
+}
+
+header {
+    background-color: rgba(17, 24, 39, 0.9); /* Specific semi-transparent dark */
+}
+
+.logo h1 {
+    color: var(--color-accent); /* Override core */
+}
+
+.tagline {
+    color: var(--color-text-light); /* Override core */
+}
+
+nav ul li a {
+    color: var(--color-text-light); /* Override core */
+}
+
+.btn {
+    color: var(--color-text-dark); /* Override core */
+}
+
+.btn:hover {
+    color: var(--color-text-light); /* Override core */
+}
+
+.content-card p {
+    color: var(--color-text-light); /* Override core */
+}
+
+.btn-small {
+    color: var(--color-text-light); /* Override core */
+}
+
+.footer-links a {
+    color: var(--color-text-light); /* Override core */
+}
+
+/* Add any other Blasters-specific styles here if needed */

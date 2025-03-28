@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title will be set dynamically -->
+    <title>Guide</title>
+
+    <!-- Link Core CSS (Adjusted path) -->
+    <link rel="stylesheet" href="../css/core.css">
+
+    <!-- Placeholder for Theme CSS (Adjusted path) -->
+    <link id="theme-style" rel="stylesheet" href="">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Inline script for early theme loading -->
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const theme = params.get('theme') || 'blasters'; // Default to blasters if not specified
+        const validThemes = ['blasters', 'stars'];
+        const currentTheme = validThemes.includes(theme) ? theme : 'blasters';
+
+        // Set theme attribute on html element
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        // Set theme CSS (Adjusted path)
+        const themeStyleLink = document.getElementById('theme-style');
+        themeStyleLink.setAttribute('href', `../css/theme-${currentTheme}.css`);
+
+        // Store theme info for app.js
+        window.APP_THEME = currentTheme;
+        // Asset path relative to the guide file's location
+        window.ASSET_PATH = `../assets/${currentTheme}/images/`;
+
+        // Set page title dynamically
+        const guideName = "Math Puzzle / Puzzle Paradise"; // Placeholder, update dynamically later
+        document.title = `${guideName} Guide - ${currentTheme === 'stars' ? 'MathStars' : 'MathBlasters'}`;
+    </script>
+
+    <!-- TODO: Move these inline styles to core.css or theme CSS files -->
+    <style>
+        body { /* Ensure body background/color uses theme */
+             background-color: var(--color-bg-dark);
+             color: var(--color-text-light);
+        }
+        .guide-content-wrapper { /* Renamed from guide-container */
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--color-card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow-card);
+            border: 2px solid var(--color-accent);
+            position: relative;
+            overflow: hidden;
+            color: var(--color-text-dark); /* Text color inside card */
+        }
+        .guide-content-wrapper[data-theme="blasters"] {
+             color: var(--color-text-light);
+        }
+         .guide-content-wrapper[data-theme="stars"] {
+             color: var(--color-text-dark);
+         }
+
+        .guide-content-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--bg-pattern-about); /* Use theme variable */
+            opacity: 0.05; /* Adjusted opacity */
+            z-index: 0;
+        }
+
+        .guide-content-wrapper h2 {
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: var(--text-transform-heading);
+            letter-spacing: var(--letter-spacing-heading);
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-content-wrapper h3 {
+            color: var(--color-secondary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: var(--text-transform-heading); /* Use theme variable */
+            letter-spacing: var(--letter-spacing-heading); /* Use theme variable */
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-content-wrapper p,
+        .guide-content-wrapper li {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            /* Color is inherited from .guide-content-wrapper */
+        }
+
+        .guide-content-wrapper ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-content-wrapper li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .guide-content-wrapper li::before {
+            content: '▶'; /* Default icon */
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+         /* Theme specific list icon */
+        .guide-content-wrapper[data-theme="stars"] li::before {
+             content: '✨';
+        }
+
+
+        .example-container {
+            background-color: rgba(0, 0, 0, 0.2); /* Darker overlay */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--color-accent);
+            position: relative;
+            z-index: 1;
+        }
+         .guide-content-wrapper[data-theme="stars"] .example-container {
+              background-color: rgba(255, 255, 255, 0.5); /* Lighter overlay for stars */
+         }
+
+
+        .example-title {
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Puzzle Grid Styles */
+         .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 210px; /* Adjusted for 60px cells + 10px gap */
+        }
+
+        .puzzle-cell {
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white; /* Usually white text on primary */
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-btn);
+        }
+         .guide-content-wrapper[data-theme="stars"] .puzzle-cell {
+             color: var(--color-text-dark); /* Dark text for stars primary */
+         }
+
+        .puzzle-cell.empty { /* Style for empty cells if needed */
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px dashed var(--color-accent);
+             color: var(--color-accent); /* Placeholder color */
+        }
+         .guide-content-wrapper[data-theme="stars"] .puzzle-cell.empty {
+             background-color: rgba(255, 255, 255, 0.3);
+         }
+
+
+        .tip-box {
+            background-color: rgba(245, 158, 11, 0.2); /* Blasters default */
+            border: 2px solid var(--color-accent);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+         .guide-content-wrapper[data-theme="stars"] .tip-box {
+              background-color: rgba(91, 206, 250, 0.2); /* Stars accent color */
+              border-color: var(--color-accent);
+         }
+
+
+        .tip-box h4 {
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+         .target-sum {
+            background-color: var(--color-secondary);
+            padding: 5px 15px; /* Smaller padding */
+            border-radius: 20px;
+            color: white;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0 5px; /* Adjust margin */
+            font-size: 0.9em; /* Slightly smaller */
+        }
+
+        .back-button { /* Use .btn class styles? */
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--color-accent);
+            color: var(--color-text-dark);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: var(--text-transform-btn);
+            letter-spacing: var(--letter-spacing-btn);
+            position: relative;
+            z-index: 1;
+            border: none;
+        }
+
+        .back-button:hover {
+            background-color: var(--color-secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-btn-hover);
+        }
+         .guide-content-wrapper[data-theme="stars"] .back-button {
+             background-color: var(--color-accent-dark); /* Yellow */
+             color: var(--color-text-dark);
+         }
+         .guide-content-wrapper[data-theme="stars"] .back-button:hover {
+             background-color: var(--color-accent); /* Light blue */
+             color: var(--color-text-dark);
+         }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1 id="app-title">MathBlasters</h1>
+                <p class="tagline" id="app-tagline">Loading theme...</p>
+            </div>
+            <nav>
+                 <ul>
+                    <li><a id="nav-link-1" href="../app.html?theme=blasters#">HQ</a></li>
+                    <li><a id="nav-link-2" href="../app.html?theme=blasters#content">Missions</a></li>
+                    <li><a id="nav-link-3" href="../app.html?theme=blasters#guides">Field Guides</a></li>
+                    <li><a id="nav-link-4" href="../app.html?theme=blasters#about">Intel</a></li>
+                    <li><a href="../index.html">Switch Version</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 40px 0;">
+        <div class="container">
+            <h2 id="guide-hero-title">Math Puzzle Guide</h2>
+            <p id="guide-hero-subtitle">Master the Math Puzzle challenge and become a legendary math warrior!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Guide Content -->
+        <div class="guide-content-wrapper" data-theme="blasters">
+            <h2 id="guide-main-title">Mission Briefing: Math Puzzle Challenge</h2>
+
+            <p id="guide-intro">Welcome to the Math Puzzle Challenge, an elite training mission where you'll solve magic square puzzles to unlock your math superpowers! This guide will prepare you for your mission and help you conquer the challenge.</p>
+
+            <h3 id="guide-objective-h">Mission Objective</h3>
+            <p id="guide-objective-p">In this mission, you need to fill in a 3×3 grid with numbers so that each row, column, and diagonal adds up to the same sum (called the "magic sum"). Some numbers are already filled in, and you need to figure out what numbers go in the empty cells.</p>
+
+            <div class="example-container">
+                <div class="example-title">Target Example:</div>
+                <p id="guide-example-desc">In this 3×3 grid, the magic sum is <span class="target-sum" id="magic-sum-example">15</span>. You need to fill in the empty cells so that each row, column, and diagonal adds up to 15.</p>
+                <div class="puzzle-grid">
+                    <div class="puzzle-cell">4</div> <div class="puzzle-cell">9</div> <div class="puzzle-cell">2</div>
+                    <div class="puzzle-cell">3</div> <div class="puzzle-cell">5</div> <div class="puzzle-cell">7</div>
+                    <div class="puzzle-cell">8</div> <div class="puzzle-cell">1</div> <div class="puzzle-cell">6</div>
+                </div>
+                <p id="guide-example-outro">In this completed puzzle, every row, column, and diagonal adds up to 15!</p>
+            </div>
+
+            <h3 id="guide-protocol-h">Mission Protocol:</h3>
+            <ul id="guide-protocol-list">
+                <li>When you start the mission, you'll see a 3×3 grid with some cells already filled with numbers.</li>
+                <li>The target magic sum will be displayed at the top of the grid.</li>
+                <li>Click on an empty cell to select it.</li>
+                <li>Use the number pad to enter a number into the selected cell.</li>
+                <li>If you make a mistake, you can click on the cell again and enter a different number.</li>
+                <li>Your objective is to fill all empty cells so that each row, column, and diagonal adds up to the magic sum.</li>
+                <li>Once you've filled all cells correctly, you'll advance to the next level with a new puzzle!</li>
+            </ul>
+
+            <div class="tip-box">
+                <h4 id="guide-tips-h">Tactical Tips:</h4>
+                <ul id="guide-tips-list">
+                    <li>Start by calculating what numbers you need in each row, column, or diagonal based on the numbers already provided and the target sum.</li>
+                    <li>Remember that in a 3×3 magic square, you can only use the numbers 1 through 9, and each number can only be used once.</li>
+                    <li>Look for rows, columns, or diagonals that already have two numbers filled in. You can easily calculate the third number by subtracting from the magic sum.</li>
+                    <li>If you get stuck, try a different approach or look for another row or column that might be easier to solve first.</li>
+                    <li>The center cell of a 3×3 magic square is always 5 in a standard magic square where the magic sum is 15.</li>
+                </ul>
+            </div>
+
+            <h3 id="guide-skills-h">Skills You'll Master:</h3>
+            <ul id="guide-skills-list">
+                <li>Addition and subtraction (calculating what numbers are needed to reach the target sum)</li>
+                <li>Logical reasoning (figuring out which numbers can go where)</li>
+                <li>Pattern recognition (understanding the properties of magic squares)</li>
+                <li>Strategic thinking (planning your approach to solving the puzzle)</li>
+            </ul>
+
+            <h3 id="guide-controls-h">Mission Controls:</h3>
+            <ul id="guide-controls-list">
+                 <li><strong>Click on an empty cell</strong> to select it</li>
+                 <li><strong>Click on a number in the number pad</strong> to enter that number into the selected cell</li>
+                 <li><strong>Clear button (C)</strong> removes the number from the selected cell</li>
+                 <li><strong>New Game button</strong> starts a new mission with a different puzzle</li>
+            </ul>
+
+            <p id="guide-outro-1">When you complete a puzzle, you'll earn points and advance to the next level! Each level gets progressively more challenging, testing your math skills to the limit.</p>
+
+            <p id="guide-outro-2">Are you ready to take on this challenge and become a Math Puzzle master? Click the button below to begin your mission!</p>
+
+            <a href="../games/math-puzzle.html" class="back-button" id="guide-cta-button">Accept Mission</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+             <div class="footer-info">
+                <p>&copy; <span id="footer-year">2023</span> <span id="footer-brand">MathBlasters HQ</span>. All rights reserved.</p>
+             </div>
+            <div class="footer-links">
+                <a id="footer-link-1" href="../app.html?theme=blasters#guides">Field Guides</a>
+                <a id="footer-link-2" href="#">Mission Rules</a>
+                <a id="footer-link-3" href="#">Contact HQ</a>
+                <a href="../index.html">Switch Version</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link Core JS -->
+    <script src="../js/core/app.js"></script>
+
+    <!-- Initialize Core App & Dynamic Content -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const theme = window.APP_THEME;
+            const isStars = theme === 'stars';
+
+            // Initialize core app features
+            initializeCoreApp({ themeName: theme });
+
+             // Set theme attribute on wrapper
+             const wrapper = document.querySelector('.guide-content-wrapper');
+             if(wrapper) {
+                 wrapper.setAttribute('data-theme', theme);
+             }
+
+            // --- Dynamic Content Update ---
+            const guideName = isStars ? "Puzzle Paradise" : "Math Puzzle Challenge";
+            document.title = `${guideName} Guide - ${isStars ? 'MathStars' : 'MathBlasters'}`;
+
+            // Header
+            document.getElementById('app-title').textContent = isStars ? 'MathStars' : 'MathBlasters';
+            document.getElementById('app-tagline').textContent = isStars ? 'Magical Math Adventures for Girls!' : 'Epic Math Adventures for Cool Boys!';
+             document.getElementById('nav-link-1').textContent = isStars ? 'Home' : 'HQ';
+            document.getElementById('nav-link-1').href = `../app.html?theme=${theme}#`;
+            document.getElementById('nav-link-2').textContent = isStars ? 'Adventures' : 'Missions';
+             document.getElementById('nav-link-2').href = `../app.html?theme=${theme}#content`;
+            document.getElementById('nav-link-3').textContent = isStars ? 'Magic Guides' : 'Field Guides';
+             document.getElementById('nav-link-3').href = `../app.html?theme=${theme}#guides`;
+            document.getElementById('nav-link-4').textContent = isStars ? 'About Magic' : 'Intel';
+             document.getElementById('nav-link-4').href = `../app.html?theme=${theme}#about`;
+
+            // Guide Hero
+            document.getElementById('guide-hero-title').textContent = `${guideName} Guide`;
+            document.getElementById('guide-hero-subtitle').textContent = isStars
+                ? `Learn to solve enchanting puzzles in Puzzle Paradise!`
+                : `Master the Math Puzzle challenge and become a legendary math warrior!`;
+
+            // Guide Content
+            document.getElementById('guide-main-title').textContent = isStars ? `Adventure Guide: ${guideName}` : `Mission Briefing: ${guideName}`;
+            document.getElementById('guide-intro').textContent = isStars
+                ? `Welcome to ${guideName}, a beautiful garden where you'll solve magical square puzzles to unlock enchanting rewards! This guide will help you navigate the paradise.`
+                : `Welcome to the ${guideName}, an elite training mission where you'll solve magic square puzzles to unlock your math superpowers! This guide will prepare you for your mission and help you conquer the challenge.`;
+
+            document.getElementById('guide-objective-h').textContent = isStars ? 'Adventure Goal' : 'Mission Objective';
+            document.getElementById('guide-objective-p').textContent = isStars
+                ? `In this adventure, you need to fill in a 3×3 grid with numbers so that each row, column, and diagonal adds up to the same sum (the "magic sum"). Some numbers are already placed, and you need to find the right numbers for the empty spots.`
+                : `In this mission, you need to fill in a 3×3 grid with numbers so that each row, column, and diagonal adds up to the same sum (called the "magic sum"). Some numbers are already filled in, and you need to figure out what numbers go in the empty cells.`;
+
+             document.getElementById('guide-example-desc').textContent = isStars
+                 ? `In this 3×3 grid, the magic sum is <span class="target-sum" id="magic-sum-example">15</span>. You need to fill in the empty cells so that each row, column, and diagonal adds up to 15.`
+                 : `In this 3×3 grid, the magic sum is <span class="target-sum" id="magic-sum-example">15</span>. You need to fill in the empty cells so that each row, column, and diagonal adds up to 15.`;
+             document.getElementById('guide-example-outro').textContent = isStars
+                 ? `In this completed puzzle, every row, column, and diagonal adds up to 15!`
+                 : `In this completed puzzle, every row, column, and diagonal adds up to 15!`;
+
+            document.getElementById('guide-protocol-h').textContent = isStars ? 'How to Play' : 'Mission Protocol:';
+             // Protocol list items seem generic enough for this game
+
+            document.getElementById('guide-tips-h').textContent = isStars ? 'Magical Tips:' : 'Tactical Tips:';
+             // Tips list items seem generic enough
+
+            document.getElementById('guide-skills-h').textContent = isStars ? 'Skills You\'ll Enhance:' : 'Skills You\'ll Master:';
+             // Skills list items seem generic enough
+
+            document.getElementById('guide-controls-h').textContent = isStars ? 'Game Controls:' : 'Mission Controls:';
+             // Controls list items seem generic enough
+
+            document.getElementById('guide-outro-1').textContent = isStars
+                ? `When you complete a puzzle, you'll earn magical points and advance to the next level! Each level brings new, beautiful puzzles.`
+                : `When you complete a puzzle, you'll earn points and advance to the next level! Each level gets progressively more challenging, testing your math skills to the limit.`;
+            document.getElementById('guide-outro-2').textContent = isStars
+                ? `Are you ready to solve the puzzles of paradise? Click the button below to begin your adventure!`
+                : `Are you ready to take on this challenge and become a Math Puzzle master? Click the button below to begin your mission!`;
+
+            // Update CTA button link and text
+            const ctaButton = document.getElementById('guide-cta-button');
+            ctaButton.href = `../games/math-puzzle.html?theme=${theme}`; // Pass theme to game
+            ctaButton.textContent = isStars ? 'Begin Adventure' : 'Accept Mission';
+
+            // Footer
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+            document.getElementById('footer-brand').textContent = isStars ? 'MathStars Magic Circle' : 'MathBlasters HQ';
+            document.getElementById('footer-link-1').href = `../app.html?theme=${theme}#guides`;
+            document.getElementById('footer-link-1').textContent = isStars ? 'Magic Guides' : 'Field Guides';
+            // Update other footer links if needed
+        });
+    </script>
+
+</body>
+</html>

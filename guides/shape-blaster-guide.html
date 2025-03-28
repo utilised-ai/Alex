@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title will be set dynamically -->
+    <title>Guide</title>
+
+    <!-- Link Core CSS (Adjusted path) -->
+    <link rel="stylesheet" href="../css/core.css">
+
+    <!-- Placeholder for Theme CSS (Adjusted path) -->
+    <link id="theme-style" rel="stylesheet" href="">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Inline script for early theme loading -->
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const theme = params.get('theme') || 'blasters'; // Default to blasters if not specified
+        const validThemes = ['blasters', 'stars'];
+        const currentTheme = validThemes.includes(theme) ? theme : 'blasters';
+
+        // Set theme attribute on html element
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        // Set theme CSS (Adjusted path)
+        const themeStyleLink = document.getElementById('theme-style');
+        themeStyleLink.setAttribute('href', `../css/theme-${currentTheme}.css`);
+
+        // Store theme info for app.js
+        window.APP_THEME = currentTheme;
+        // Asset path relative to the guide file's location
+        window.ASSET_PATH = `../assets/${currentTheme}/images/`;
+
+        // Set page title dynamically
+        const guideName = "Shape Blaster / Shape Sorceress"; // Placeholder, update dynamically later
+        document.title = `${guideName} Guide - ${currentTheme === 'stars' ? 'MathStars' : 'MathBlasters'}`;
+    </script>
+
+    <!-- TODO: Move these inline styles to core.css or theme CSS files -->
+    <style>
+        body { /* Ensure body background/color uses theme */
+             background-color: var(--color-bg-dark);
+             color: var(--color-text-light);
+        }
+        .guide-content-wrapper { /* Renamed from guide-container */
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--color-card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow-card);
+            border: 2px solid var(--color-accent);
+            position: relative;
+            overflow: hidden;
+            color: var(--color-text-dark); /* Text color inside card */
+        }
+        .guide-content-wrapper[data-theme="blasters"] {
+             color: var(--color-text-light);
+        }
+         .guide-content-wrapper[data-theme="stars"] {
+             color: var(--color-text-dark);
+         }
+
+        .guide-content-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--bg-pattern-about); /* Use theme variable */
+            opacity: 0.05; /* Adjusted opacity */
+            z-index: 0;
+        }
+
+        .guide-content-wrapper h2 {
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: var(--text-transform-heading);
+            letter-spacing: var(--letter-spacing-heading);
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-content-wrapper h3 {
+            color: var(--color-secondary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: var(--text-transform-heading); /* Use theme variable */
+            letter-spacing: var(--letter-spacing-heading); /* Use theme variable */
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-content-wrapper p,
+        .guide-content-wrapper li {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            /* Color is inherited from .guide-content-wrapper */
+        }
+
+        .guide-content-wrapper ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-content-wrapper li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .guide-content-wrapper li::before {
+            content: '▶'; /* Default icon */
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+         /* Theme specific list icon */
+        .guide-content-wrapper[data-theme="stars"] li::before {
+             content: '✨';
+        }
+
+
+        .example-container {
+            background-color: rgba(0, 0, 0, 0.2); /* Darker overlay */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--color-accent);
+            position: relative;
+            z-index: 1;
+        }
+         .guide-content-wrapper[data-theme="stars"] .example-container {
+              background-color: rgba(255, 255, 255, 0.5); /* Lighter overlay for stars */
+         }
+
+
+        .example-title {
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Shapes Container Styles */
+        .shapes-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .shape {
+            width: 60px; /* Smaller shapes */
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+        }
+
+        .shape svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+        }
+
+        /* Use theme colors for shapes */
+        .shape-triangle { color: var(--color-primary); }
+        .shape-square { color: var(--color-secondary); }
+        .shape-circle { color: var(--color-accent); }
+        .shape-hexagon { color: var(--color-accent-dark); }
+        /* Add more shapes/colors as needed */
+
+
+        .tip-box {
+            background-color: rgba(245, 158, 11, 0.2); /* Blasters default */
+            border: 2px solid var(--color-accent);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+         .guide-content-wrapper[data-theme="stars"] .tip-box {
+              background-color: rgba(91, 206, 250, 0.2); /* Stars accent color */
+              border-color: var(--color-accent);
+         }
+
+
+        .tip-box h4 {
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .property-tag {
+            display: inline-block;
+            background-color: var(--color-secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+         .guide-content-wrapper[data-theme="stars"] .property-tag {
+             background-color: var(--color-primary); /* Pink tags for stars */
+         }
+
+
+        .back-button { /* Use .btn class styles? */
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--color-accent);
+            color: var(--color-text-dark);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: var(--text-transform-btn);
+            letter-spacing: var(--letter-spacing-btn);
+            position: relative;
+            z-index: 1;
+            border: none;
+        }
+
+        .back-button:hover {
+            background-color: var(--color-secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-btn-hover);
+        }
+         .guide-content-wrapper[data-theme="stars"] .back-button {
+             background-color: var(--color-accent-dark); /* Yellow */
+             color: var(--color-text-dark);
+         }
+         .guide-content-wrapper[data-theme="stars"] .back-button:hover {
+             background-color: var(--color-accent); /* Light blue */
+             color: var(--color-text-dark);
+         }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1 id="app-title">MathBlasters</h1>
+                <p class="tagline" id="app-tagline">Loading theme...</p>
+            </div>
+            <nav>
+                 <ul>
+                    <li><a id="nav-link-1" href="../app.html?theme=blasters#">HQ</a></li>
+                    <li><a id="nav-link-2" href="../app.html?theme=blasters#content">Missions</a></li>
+                    <li><a id="nav-link-3" href="../app.html?theme=blasters#guides">Field Guides</a></li>
+                    <li><a id="nav-link-4" href="../app.html?theme=blasters#about">Intel</a></li>
+                    <li><a href="../index.html">Switch Version</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 40px 0;">
+        <div class="container">
+            <h2 id="guide-hero-title">Shape Blaster Guide</h2>
+            <p id="guide-hero-subtitle">Master the Shape Blaster mission and become a geometry commando!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Guide Content -->
+        <div class="guide-content-wrapper" data-theme="blasters">
+            <h2 id="guide-main-title">Mission Briefing: Shape Blaster</h2>
+
+            <p id="guide-intro">Welcome to Shape Blaster, an action-packed mission where you'll identify and blast shapes based on their properties! This guide will prepare you for your mission and help you become a geometry commando.</p>
+
+            <h3 id="guide-objective-h">Mission Objective</h3>
+            <p id="guide-objective-p">In this mission, you need to quickly identify shapes based on their properties (like number of sides, angles, or symmetry) and blast them before they reach your base. The faster you identify and blast the correct shapes, the higher your score!</p>
+
+            <div class="example-container">
+                <div class="example-title">Target Shapes:</div>
+                <p id="guide-example-desc">You'll encounter various shapes with different properties. Your mission is to blast only the shapes that match the target property shown at the top of the screen.</p>
+                <div class="shapes-container">
+                     <div class="shape shape-triangle">
+                         <svg viewBox="0 0 100 100"><polygon points="50,10 90,90 10,90" fill="currentColor"/></svg>
+                     </div>
+                     <div class="shape shape-square">
+                         <svg viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="currentColor"/></svg>
+                     </div>
+                     <div class="shape shape-circle">
+                         <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="currentColor"/></svg>
+                     </div>
+                     <div class="shape shape-hexagon">
+                         <svg viewBox="0 0 100 100"><polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="currentColor"/></svg>
+                     </div>
+                </div>
+                <p id="guide-example-tags">Example target properties: <span class="property-tag">3 sides</span> <span class="property-tag">4 equal sides</span> <span class="property-tag">No corners</span> <span class="property-tag">Line symmetry</span></p>
+            </div>
+
+            <h3 id="guide-protocol-h">Mission Protocol:</h3>
+            <ul id="guide-protocol-list">
+                <li>When you start the mission, you'll see a target property displayed at the top of the screen.</li>
+                <li>Shapes will start appearing from the top of the screen and move downward toward your base.</li>
+                <li>Click on (blast) the shapes that match the target property.</li>
+                <li>If you blast a shape that doesn't match the property, you'll lose points.</li>
+                <li>If a shape that matches the property reaches your base without being blasted, you'll lose a life.</li>
+                <li>The mission gets progressively harder with shapes moving faster and more complex properties to identify.</li>
+                <li>Your objective is to score as many points as possible and advance through all levels!</li>
+            </ul>
+
+            <div class="tip-box">
+                <h4 id="guide-tips-h">Tactical Tips:</h4>
+                <ul id="guide-tips-list">
+                    <li>Learn to quickly identify the key properties of shapes - number of sides, equal sides, types of angles, symmetry.</li>
+                    <li>Prioritize shapes that are closest to your base.</li>
+                    <li>Don't waste ammo on shapes that don't match the target property.</li>
+                    <li>Watch for power-ups that can slow down shapes or give you special weapons.</li>
+                    <li>In higher levels, the target property might change mid-mission, so stay alert!</li>
+                </ul>
+            </div>
+
+            <h3 id="guide-skills-h">Shape Properties to Master:</h3>
+            <ul id="guide-skills-list">
+                 <li><strong>Number of sides:</strong> Triangles (3), Squares (4), Pentagons (5), Hexagons (6), etc.</li>
+                 <li><strong>Equal sides:</strong> Equilateral triangles, Squares, Regular pentagons, etc.</li>
+                 <li><strong>Angles:</strong> Right angles (90°), Acute angles (less than 90°), Obtuse angles (more than 90°)</li>
+                 <li><strong>Symmetry:</strong> Line symmetry (can be folded in half), Rotational symmetry (looks the same when rotated)</li>
+                 <li><strong>Special properties:</strong> Parallel sides, Perpendicular sides, Diagonals</li>
+            </ul>
+
+            <h3 id="guide-controls-h">Mission Controls:</h3>
+            <ul id="guide-controls-list">
+                 <li><strong>Click/tap on a shape</strong> to blast it</li>
+                 <li><strong>Start Mission button</strong> begins a new mission</li>
+                 <li><strong>Pause button</strong> temporarily halts the mission if you need a breather</li>
+                 <li><strong>Power-up buttons</strong> activate special abilities when available</li>
+            </ul>
+
+            <p id="guide-outro-1">When you complete all levels, you'll earn the title of Geometry Commando! Your high score will be recorded in the MathBlasters Hall of Fame.</p>
+
+            <p id="guide-outro-2">Are you ready to take on this challenge and become a Shape Blaster master? Click the button below to begin your mission!</p>
+
+            <!-- Link will eventually point to the actual game page -->
+            <a href="../games/shape-sort.html" class="back-button" id="guide-cta-button">Accept Mission</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+             <div class="footer-info">
+                <p>&copy; <span id="footer-year">2023</span> <span id="footer-brand">MathBlasters HQ</span>. All rights reserved.</p>
+             </div>
+            <div class="footer-links">
+                <a id="footer-link-1" href="../app.html?theme=blasters#guides">Field Guides</a>
+                <a id="footer-link-2" href="#">Mission Rules</a>
+                <a id="footer-link-3" href="#">Contact HQ</a>
+                <a href="../index.html">Switch Version</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link Core JS -->
+    <script src="../js/core/app.js"></script>
+
+    <!-- Initialize Core App & Dynamic Content -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const theme = window.APP_THEME;
+            const isStars = theme === 'stars';
+
+            // Initialize core app features
+            initializeCoreApp({ themeName: theme });
+
+             // Set theme attribute on wrapper
+             const wrapper = document.querySelector('.guide-content-wrapper');
+             if(wrapper) {
+                 wrapper.setAttribute('data-theme', theme);
+             }
+
+            // --- Dynamic Content Update ---
+            const guideName = isStars ? "Shape Sorceress" : "Shape Blaster";
+            document.title = `${guideName} Guide - ${isStars ? 'MathStars' : 'MathBlasters'}`;
+
+            // Header
+            document.getElementById('app-title').textContent = isStars ? 'MathStars' : 'MathBlasters';
+            document.getElementById('app-tagline').textContent = isStars ? 'Magical Math Adventures for Girls!' : 'Epic Math Adventures for Cool Boys!';
+             document.getElementById('nav-link-1').textContent = isStars ? 'Home' : 'HQ';
+            document.getElementById('nav-link-1').href = `../app.html?theme=${theme}#`;
+            document.getElementById('nav-link-2').textContent = isStars ? 'Adventures' : 'Missions';
+             document.getElementById('nav-link-2').href = `../app.html?theme=${theme}#content`;
+            document.getElementById('nav-link-3').textContent = isStars ? 'Magic Guides' : 'Field Guides';
+             document.getElementById('nav-link-3').href = `../app.html?theme=${theme}#guides`;
+            document.getElementById('nav-link-4').textContent = isStars ? 'About Magic' : 'Intel';
+             document.getElementById('nav-link-4').href = `../app.html?theme=${theme}#about`;
+
+            // Guide Hero
+            document.getElementById('guide-hero-title').textContent = `${guideName} Guide`;
+            document.getElementById('guide-hero-subtitle').textContent = isStars
+                ? `Learn to wield the magic of shapes as a Shape Sorceress!`
+                : `Master the Shape Blaster mission and become a geometry commando!`;
+
+            // Guide Content
+            document.getElementById('guide-main-title').textContent = isStars ? `Adventure Guide: ${guideName}` : `Mission Briefing: ${guideName}`;
+            document.getElementById('guide-intro').textContent = isStars
+                ? `Welcome to ${guideName}, a magical challenge where you'll use your sorcery to identify and sort shapes based on their properties! This guide will help you master the magic of geometry.`
+                : `Welcome to ${guideName}, an action-packed mission where you'll identify and blast shapes based on their properties! This guide will prepare you for your mission and help you become a geometry commando.`;
+
+            document.getElementById('guide-objective-h').textContent = isStars ? 'Adventure Goal' : 'Mission Objective';
+            document.getElementById('guide-objective-p').textContent = isStars
+                ? `In this adventure, you need to quickly identify shapes based on their properties (like number of sides, angles, or symmetry) and sort them into the correct magical zones. The faster you sort the shapes, the higher your score!`
+                : `In this mission, you need to quickly identify shapes based on their properties (like number of sides, angles, or symmetry) and blast them before they reach your base. The faster you identify and blast the correct shapes, the higher your score!`;
+
+             document.getElementById('guide-example-desc').textContent = isStars
+                 ? `You'll encounter various shapes with different properties. Your goal is to sort only the shapes that match the target property shown into the correct zone.`
+                 : `You'll encounter various shapes with different properties. Your mission is to blast only the shapes that match the target property shown at the top of the screen.`;
+             // Example tags might need different text for stars
+
+            document.getElementById('guide-protocol-h').textContent = isStars ? 'How to Play' : 'Mission Protocol:';
+             // Protocol list items need significant changes for sorting vs blasting
+             const protocolList = document.getElementById('guide-protocol-list');
+             if (protocolList) {
+                 protocolList.children[0].textContent = isStars ? `When you start the adventure, you'll see a target property displayed.` : `When you start the mission, you'll see a target property displayed at the top of the screen.`;
+                 protocolList.children[1].textContent = isStars ? `Shapes will start appearing and move across the screen.` : `Shapes will start appearing from the top of the screen and move downward toward your base.`;
+                 protocolList.children[2].textContent = isStars ? `Drag the shapes that match the target property into the designated magical zone.` : `Click on (blast) the shapes that match the target property.`;
+                 protocolList.children[3].textContent = isStars ? `If you sort a shape incorrectly, you'll lose points.` : `If you blast a shape that doesn't match the property, you'll lose points.`;
+                 protocolList.children[4].textContent = isStars ? `If a shape that matches the property passes by without being sorted, you'll lose a life.` : `If a shape that matches the property reaches your base without being blasted, you'll lose a life.`;
+                 protocolList.children[5].textContent = isStars ? `The adventure gets faster with more complex properties to identify.` : `The mission gets progressively harder with shapes moving faster and more complex properties to identify.`;
+                 protocolList.children[6].textContent = isStars ? `Your objective is to score as many points as possible and master all the shape spells!` : `Your objective is to score as many points as possible and advance through all levels!`;
+             }
+
+
+            document.getElementById('guide-tips-h').textContent = isStars ? 'Magical Tips:' : 'Tactical Tips:';
+             // Tips list items might need slight text variations
+             const tipsList = document.getElementById('guide-tips-list');
+             if (tipsList) {
+                 tipsList.children[2].textContent = isStars ? `Don't waste magic on shapes that don't match the target property.` : `Don't waste ammo on shapes that don't match the target property.`;
+                 tipsList.children[3].textContent = isStars ? `Watch for magical power-ups that can slow down shapes or help you sort.` : `Watch for power-ups that can slow down shapes or give you special weapons.`;
+                 tipsList.children[4].textContent = isStars ? `In higher levels, the target property might change, so stay focused!` : `In higher levels, the target property might change mid-mission, so stay alert!`;
+             }
+
+
+            document.getElementById('guide-skills-h').textContent = isStars ? 'Shape Properties to Learn:' : 'Shape Properties to Master:';
+             // Skills list items seem generic enough
+
+            document.getElementById('guide-controls-h').textContent = isStars ? 'Game Controls:' : 'Mission Controls:';
+             // Controls list items need changes for drag vs click
+             const controlsList = document.getElementById('guide-controls-list');
+             if (controlsList) {
+                 controlsList.children[0].innerHTML = isStars ? `<strong>Drag a shape</strong> to move it to the sorting zone` : `<strong>Click/tap on a shape</strong> to blast it`;
+                 controlsList.children[1].innerHTML = isStars ? `<strong>Start Adventure button</strong> begins a new adventure` : `<strong>Start Mission button</strong> begins a new mission`;
+                 // Pause and Power-up buttons seem okay
+             }
+
+
+            document.getElementById('guide-outro-1').textContent = isStars
+                ? `When you complete all levels, you'll earn the title of Master Shape Sorceress! Your high score will be recorded.`
+                : `When you complete all levels, you'll earn the title of Geometry Commando! Your high score will be recorded in the MathBlasters Hall of Fame.`;
+            document.getElementById('guide-outro-2').textContent = isStars
+                ? `Are you ready to wield the magic of shapes? Click the button below to begin your adventure!`
+                : `Are you ready to take on this challenge and become a Shape Blaster master? Click the button below to begin your mission!`;
+
+            // Update CTA button link and text
+            const ctaButton = document.getElementById('guide-cta-button');
+            ctaButton.href = `../games/shape-sort.html?theme=${theme}`; // Pass theme to game
+            ctaButton.textContent = isStars ? 'Begin Adventure' : 'Accept Mission'; // This game is 'Coming Soon'
+
+            // Footer
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+            document.getElementById('footer-brand').textContent = isStars ? 'MathStars Magic Circle' : 'MathBlasters HQ';
+            document.getElementById('footer-link-1').href = `../app.html?theme=${theme}#guides`;
+            document.getElementById('footer-link-1').textContent = isStars ? 'Magic Guides' : 'Field Guides';
+            // Update other footer links if needed
+        });
+    </script>
+
+</body>
+</html>
